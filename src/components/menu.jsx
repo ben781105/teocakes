@@ -1,26 +1,37 @@
-// src/pages/Menu.jsx
+
 import { Link } from 'react-router-dom'
-import { cakes } from '../data/cakes'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
+import { getCakes } from '../services/productService'
 import Section from './layout/section'
 import menuImage from '../assets/stockcake.jpg'
-const statusStyles = {
-  available: { label: 'Available', className: 'bg-green-50 text-green-700' },
-  'sold-out': { label: 'Sold out', className: 'bg-gray-100 text-gray-400' },
-  'made-to-order': { label: 'Made to order', className: 'bg-yellow-50 text-yellow-700' },
-}
+
 
 function Menu() {
-  const categories = ['All', ...new Set(cakes.map((cake) => cake.category))]
-  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [cakes,setCakes] = useState([])
 
+ const categories = ['All', ...new Set(cakes.map((cake) => cake.category_name))]
+ const [selectedCategory, setSelectedCategory] = useState('All')
 
-   const filteredCakes =
+  
+
+  useEffect(() => {
+    const fetchCakes = async () => {
+      try {
+        const data = await getCakes()
+        console.log("fetched cakes", data)
+        setCakes(data)
+      } catch (error) {
+        console.error("error fetching cakes", error)
+      }
+    }
+    fetchCakes()
+  }, [])
+ const filteredCakes =
     selectedCategory === 'All'
       ? cakes
-      : cakes.filter((cake) => cake.category === selectedCategory)
+      : cakes.filter((cake) => cake.category_name === selectedCategory)
 
-
+  
   return (
     <Section id='menu'>
      <div className='flex flex-col gap-4 md:gap-6 h-fit'>
@@ -50,20 +61,16 @@ function Menu() {
 
       {/* cake list */}
       <div className="flex flex-col gap-3">
-        {filteredCakes.map(({ id, name, price, src, status }) => {
-          const isSoldOut = status === 'sold-out'
-          const badge = statusStyles[status]
+        {filteredCakes.map(({ id, name, price, image}) => {
+          
 
           return (
             <Link
-              key={id}
-              to={isSoldOut ? '#' : `/menu/${id}`}
-              onClick={(e) => isSoldOut && e.preventDefault()}
-              className={`flex items-center gap-4 border border-gray-200 rounded-xl p-3 transition
-                ${isSoldOut ? 'opacity-50 cursor-not-allowed' : 'hover:border-gray-400'}`}
+              key={id} 
+              className="flex items-center gap-4 border border-gray-200 rounded-xl"
             >
               <img
-                src={src}
+                src={image}
                 alt={name}
                 className="w-14 h-14 object-cover rounded-lg shrink-0"
               />
@@ -71,17 +78,14 @@ function Menu() {
                 <p className="text-sm font-medium text-gray-900">{name}</p>
                 <p className="text-xs text-gray-500">{price}</p>
               </div>
-              <span className={`text-xs px-2 py-1 rounded-md ${badge.className}`}>
-                {badge.label}
-              </span>
             </Link>
           )
         })}
       </div>
       </div>
 
-      <div className='flex-1'>
-        <img src={menuImage} alt=""  className='object-cover w-full h-full rounded-2xl'/>
+      <div className='flex-1 flex-start'>
+        <img src={menuImage} alt=""  className='object-cover w-full h-80 md:h-full rounded-2xl'/>
       </div>
      </div>
      </div>

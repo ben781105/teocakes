@@ -17,5 +17,9 @@
 
 .testimonial-swiper .swiper-pagination {
   position: relative;
-  margin-top: 14px; /* adjust to taste */
+  margin-top: 14px;
+}
+
+button{
+  cursor: pointer;
 }

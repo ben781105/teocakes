@@ -5,11 +5,20 @@ import { Menu, X } from 'lucide-react'
 import Container from './layout/container'
 import TopBar from './TopBar'
 import { motion, AnimatePresence } from "motion/react";
+import { ShoppingCart } from 'lucide-react'
+import { useCart } from '../context/useCart'
 
-function Navbar() {
+function Navbar({ onCartClick }) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
+
+  const { cart } = useCart()
+
+  const itemCount =
+  cart?.items.reduce(
+    (total,item)=>total + item.quantity,0
+  ) || 0
 
   const scrollToSection = (id) => {
     setMobileOpen(false)
@@ -41,7 +50,6 @@ function Navbar() {
           <Link to="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
             <span className="text-2xl">🎂</span>
             <span className="text-xl font-serif font-bold text-gray-900">TeoCakes</span>
-            <span className="text-red-600">.</span>
           </Link>
 
           {/* Desktop links */}
@@ -57,15 +65,22 @@ function Navbar() {
             </button>
           </div>
 
+          <div className="flex gap-5 items-center ">
+             <button  onClick={onCartClick}
+              className=' relative self-end w-10 h-10 rounded-full bg-red-200 flex items-center justify-center cursor-pointer'><ShoppingCart  />
+              {itemCount > 0 && <span id='item-count' className="w-4 h-4 text-[15px] bg-red-500 text-white rounded-full flex items-center justify-center">{itemCount}</span>}
+            </button>
+
           <a
             href="https://wa.me/256700000000?text=Hi!%20I'd%20like%20to%20order%20a%20cake."
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:inline-flex items-center gap-2 bg-red-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-red-700 transition"
+            className="hidden md:inline-flex items-center justify-center gap-2 bg-red-600 text-white  py-2.5 w-40 rounded-lg text-sm font-medium hover:bg-red-700 transition"
           >
             Order Online
-            <span className="text-base">↗</span>
+            
           </a>
+          
 
           {/* Mobile toggle button */}
           <button
@@ -75,7 +90,7 @@ function Navbar() {
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
-
+        </div>
         </Container>
       </div>
 

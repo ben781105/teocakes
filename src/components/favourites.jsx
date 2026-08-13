@@ -3,6 +3,7 @@ import { getFavourites } from '../services/favouriteService'
 import Section from './layout/section.jsx'
 import {Plus} from 'lucide-react' 
 import CakeDetail from './cakedetail.jsx'
+import { formatPrice } from '../data/numberFormatter.js'
 function Favourites() {
   const [cakes, setCakes] = useState([])
   const [selectedCake, setSelectedCake] = useState(null)
@@ -39,7 +40,7 @@ function Favourites() {
 
               <div className='z-5 p-3 md:p-4 flex flex-1 flex-col justify-center'>
                 <h3>{name}</h3>
-                <p>{price}</p>
+                <span>Ugx&nbsp;{formatPrice(price)}</span>
               </div>
 
             

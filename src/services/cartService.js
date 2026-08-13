@@ -14,6 +14,7 @@ export const getCartId = () => {
 export const getCart = async () => {
   const cartId = getCartId()
   const response = await api.get(`/cart/${cartId}/`)
+    console.log("fetched cart", response.data)
   return response.data
 }
 

@@ -1,10 +1,13 @@
 import {Minus,Plus} from 'lucide-react'
 import {useEffect, useState} from 'react'
-import {addToCart} from '../services/cartService'
+import {useCart} from '../context/useCart'
 function CakeDetail({ cake, onClose }) {
     const [quantity, setQuantity] = useState(1)
     const [adding, setAdding] = useState(false)
     const [added, setAdded] = useState(false)
+
+    const { addItem } = useCart()
+
      useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose()
@@ -27,7 +30,7 @@ function CakeDetail({ cake, onClose }) {
    const handleAddToCart = async () => {
     setAdding(true)
     try {
-      await addToCart(id, quantity)
+      await addItem(id, quantity)
       setAdded(true)
       setTimeout(() => setAdded(false), 2000)
     } catch (error) {

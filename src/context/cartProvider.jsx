@@ -1,7 +1,7 @@
 // src/context/CartContext.jsx
 
 import {useEffect, useState } from 'react'
-import { getCart, addToCart,removeCartItem,updateCartItem } from '../services/cartService'
+import { getCart, addToCart,removeCartItem,updateCartItem ,setCartPhone,recoverCartByPhone} from '../services/cartService'
 import {CartContext} from './cartContext'
  
 function CartProvider({ children }) {
@@ -62,6 +62,28 @@ function CartProvider({ children }) {
   }
 }
 
+ const confirmPhone = async (phoneNumber) => {
+    try {
+      const updatedCart = await setCartPhone(phoneNumber)
+      setCart(updatedCart)
+      return updatedCart
+    } catch (error) {
+      console.error('Error setting cart phone:', error)
+      throw error
+    }
+  }
+
+ const recoverCart = async (phoneNumber) => {
+    try {
+      const recoveredCart = await recoverCartByPhone(phoneNumber)
+      setCart(recoveredCart)
+      return recoveredCart
+    } catch (error) {
+      console.error('Error recovering cart:', error)
+      throw error
+    }
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -69,7 +91,9 @@ function CartProvider({ children }) {
         loading,
         addItem,
         removeItem,
-        updateItem
+        updateItem,
+        confirmPhone,
+        recoverCart
       }}
     >
       {children}

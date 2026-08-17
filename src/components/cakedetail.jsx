@@ -1,4 +1,4 @@
-import {Minus,Plus} from 'lucide-react'
+import {Minus,Plus, X} from 'lucide-react'
 import {useEffect, useState} from 'react'
 import {useCart} from '../context/useCart'
 function CakeDetail({ cake, onClose }) {
@@ -52,11 +52,13 @@ function CakeDetail({ cake, onClose }) {
            onClick={(e) => e.stopPropagation()}
            className='relative bg-white rounded-2xl max-w-3xl w-full h-[90vh] md:h-100 flex flex-col md:flex-row overflow-hidden'
            >
-              <div className= 'w-full md:w-1/2 h-1/2 md:h-full shrink-0 overflow-hidden'>
+
+              <button className='absolute z-10 top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#e5e5e5] shadow-emerald-100' onClick={onClose} aria-label='Close'><X/></button>
+              <div className= ' z-1 w-full md:w-[45%] h-1/2 md:h-full shrink-0 overflow-hidden'>
                 <img src={image} alt={name} className='w-full h-full object-cover rounded-2xl' />
               </div>
 
-              <div className='w-full md:w-1/2 h-1/2 md:h-full p-5 md:p-6 flex flex-col md:justify-center md:items-center  overflow-y-auto'>
+              <div className='w-full md:w-1/2 h-1/2 md:h-full p-8  md:p-8 flex flex-col md:justify-center md:items-center  overflow-y-auto'>
                 <div className='flex flex-col gap-3'>
                     <h1>{name}</h1>
                     <p>{description}</p>

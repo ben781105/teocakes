@@ -1,15 +1,15 @@
-
-import { Link } from 'react-router-dom'
 import {useState,useEffect} from 'react'
 import { getCakes } from '../services/productService'
 import Section from './layout/section'
 import menuImage from '../assets/stockcake.jpg'
-
+import CakeDetail from './cakedetail'
+import { formatPrice } from '../data/numberFormatter'
 
 function Menu() {
   const [cakes,setCakes] = useState([])
 
  const categories = ['All', ...new Set(cakes.map((cake) => cake.category_name))]
+ const [selectedCake, setSelectedCake] = useState(null)
  const [selectedCategory, setSelectedCategory] = useState('All')
 
   
@@ -60,14 +60,16 @@ function Menu() {
       </div>
 
       {/* cake list */}
-      <div className="flex flex-col gap-3">
-        {filteredCakes.map(({ id, name, price, image}) => {
-          
+      <div className="flex flex-col gap-3 ">
+        {filteredCakes.map((cake) => {
+            
+          const { id, name, price, image } = cake
 
-          return (
-            <Link
+           return (
+            <div
               key={id} 
-              className="flex items-center gap-4 border border-gray-200 rounded-xl"
+              onClick={() => setSelectedCake(cake)}
+              className="flex items-center gap-4 border border-gray-200 rounded-xl cursor-pointer  px-3 py-3"
             >
               <img
                 src={image}
@@ -76,9 +78,9 @@ function Menu() {
               />
               <div className="flex-1">
                 <p className="text-sm font-medium text-gray-900">{name}</p>
-                <p className="text-xs text-gray-500">{price}</p>
+                <span className="text-xs text-gray-500">Ugx&nbsp;{formatPrice(price ?? 0)}</span> 
               </div>
-            </Link>
+            </div>
           )
         })}
       </div>
@@ -89,6 +91,10 @@ function Menu() {
       </div>
      </div>
      </div>
+    
+     {selectedCake &&
+     <CakeDetail cake={selectedCake} onClose={() => setSelectedCake(null)} />
+      }
     </Section>
   )
 }

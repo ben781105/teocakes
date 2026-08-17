@@ -41,3 +41,20 @@ export const removeCartItem = async (itemId) => {
   const response = await api.delete(`/cart/${cartId}/items/${itemId}/`)
   return response.data
 }
+
+export const setCartPhone = async (phoneNumber) => {
+  const cartId = getCartId()
+  const response = await api.patch(`/cart/${cartId}/set-phone/`, {
+    phone_number: phoneNumber
+  })
+  return response.data
+}
+
+export const recoverCartByPhone = async (phoneNumber) => {
+  const response = await api.get(`/cart/by-phone/`, {
+    params: { phone: phoneNumber }
+  })
+ 
+  localStorage.setItem(CART_ID_KEY, response.data.cart_id)
+  return response.data
+}

@@ -1,10 +1,59 @@
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { X, ShoppingCart, Minus, Plus } from 'lucide-react'
 import { useCart } from '../context/useCart'
-import { formatPrice } from '../data/numberFormatter'
+import { formatPrice, buildOrderMessage } from '../data/numberFormatter'
 
 function Cart({ isOpen, onClose }) {
-  const { cart, loading, removeItem, updateItem } = useCart()
+  const { cart, loading, removeItem, updateItem, confirmPhone, recoverCart } = useCart()
+
+  const [checkoutOpen, setCheckoutOpen] = useState(false)
+  const [phone, setPhone] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
+
+  const [recoverOpen, setRecoverOpen] = useState(false)
+  const [recoverPhone, setRecoverPhone] = useState('')
+  const [recovering, setRecovering] = useState(false)
+  const [recoverError, setRecoverError] = useState(null)
+
+  const handleConfirmOrder = async () => {
+    if (!phone) {
+      setError('Please enter your WhatsApp number')
+      return
+    }
+    setSubmitting(true)
+    setError(null)
+    try {
+      const updatedCart = await confirmPhone(phone)
+
+      const message = buildOrderMessage(updatedCart)
+      const whatsappUrl = `https://wa.me/256746326666?text=${message}`
+
+      window.open(whatsappUrl, '_blank')
+      setCheckoutOpen(false)
+    } catch (err) {
+        console.error(err)
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  const handleRecover = async () => {
+    if (!recoverPhone) return
+    setRecovering(true)
+    setRecoverError(null)
+    try {
+      await recoverCart(recoverPhone)
+      setRecoverOpen(false)
+    } catch (err) {
+        console.error(err)
+      setRecoverError('No cart found for that number.')
+    } finally {
+      setRecovering(false)
+    }
+  }
 
   return (
     <AnimatePresence>
@@ -18,7 +67,7 @@ function Cart({ isOpen, onClose }) {
         >
           <motion.div
             onClick={(e) => e.stopPropagation()}
-            className="absolute right-0 top-0 h-full w-full max-w-md bg-white"
+            className="absolute right-0 top-0 h-full w-full max-w-sm bg-white"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -39,9 +88,36 @@ function Cart({ isOpen, onClose }) {
                   <p className='text-sm text-gray-500'>Loading your cart...</p>
                 </div>
               ) : !cart || cart.items.length === 0 ? (
-                <div className='h-full flex flex-col gap-2 items-center justify-center'>
+                <div className='h-full flex flex-col gap-3 items-center justify-center px-4'>
                   <h3>Your cart is empty</h3>
-                  <p>Add something delicious!</p>
+                  <p className='text-sm text-gray-500'>Add something delicious!</p>
+
+                  {!recoverOpen ? (
+                    <button
+                      onClick={() => setRecoverOpen(true)}
+                      className='text-xs text-gray-500 underline'
+                    >
+                      Used our site on another device? Recover your cart
+                    </button>
+                  ) : (
+                    <div className='flex flex-col gap-2 w-full'>
+                      <input
+                        type='tel'
+                        value={recoverPhone}
+                        onChange={(e) => setRecoverPhone(e.target.value)}
+                        placeholder='Your WhatsApp number'
+                        className='border rounded-full px-4 py-2 text-sm'
+                      />
+                      <button
+                        onClick={handleRecover}
+                        disabled={recovering}
+                        className='bg-gray-900 text-white text-sm py-2 rounded-full disabled:opacity-60'
+                      >
+                        {recovering ? '...' : 'Recover cart'}
+                      </button>
+                      {recoverError && <p className='text-xs text-red-500'>{recoverError}</p>}
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className='flex flex-col px-4 overflow-y-auto'>
@@ -55,14 +131,13 @@ function Cart({ isOpen, onClose }) {
                             alt={item.product.name}
                           />
                         </span>
-
                         <div className='flex flex-col gap-1'>
                           <span>{item.product.name}</span>
-                          <span className='text-xs text-gray-500'>@ &nbsp;Ugx{formatPrice(item.product.price)}</span>
+                          <span className='text-xs text-gray-500'>{formatPrice(item.product.price)} each</span>
                         </div>
                       </div>
 
-                      <div className='flex items-center gap-12 shrink-0'>
+                      <div className='flex items-center gap-2 shrink-0'>
                         <div className='flex items-center border rounded-full'>
                           <button
                             className='flex items-center justify-center w-7 h-7 rounded-full hover:bg-gray-100'
@@ -83,7 +158,6 @@ function Cart({ isOpen, onClose }) {
                             <Plus className='w-3 h-3' />
                           </button>
                         </div>
-
                         <button onClick={() => removeItem(item.id)} aria-label='Remove item'>
                           <X className='w-5 h-5' />
                         </button>
@@ -93,19 +167,40 @@ function Cart({ isOpen, onClose }) {
                 </div>
               )}
 
-              <div className='flex flex-col px-4 gap-4 mt-auto pt-4'>
+              <div className='flex flex-col px-4 gap-3 mt-auto pt-4'>
                 <hr className='border-gray-300' />
                 <div className='flex items-center justify-between'>
                   <span>Total</span>
                   <span>Ugx&nbsp;{formatPrice(cart?.total ?? 0)}</span>
                 </div>
 
-                <button
-                  className='bg-red-500 text-white py-2 rounded-3xl disabled:opacity-50'
-                  disabled={!cart || cart.items.length === 0}
-                >
-                  Checkout
-                </button>
+                {!checkoutOpen ? (
+                  <button
+                    onClick={() => setCheckoutOpen(true)}
+                    disabled={!cart || cart.items.length === 0}
+                    className='bg-red-500 text-white py-2 rounded-3xl disabled:opacity-50'
+                  >
+                    Checkout
+                  </button>
+                ) : (
+                  <div className='flex flex-col gap-2'>
+                    <input
+                      type='tel'
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder='Your WhatsApp number, e.g. +2567xxxxxxx'
+                      className='border rounded-full px-4 py-2 text-sm'
+                    />
+                    {error && <p className='text-xs text-red-500'>{error}</p>}
+                    <button
+                      onClick={handleConfirmOrder}
+                      disabled={submitting}
+                      className='bg-red-500 text-white py-2 rounded-3xl disabled:opacity-50'
+                    >
+                      {submitting ? 'Sending...' : 'Send Order via WhatsApp'}
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>

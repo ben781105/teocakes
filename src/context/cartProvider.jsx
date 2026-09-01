@@ -1,104 +1,89 @@
-// src/context/CartContext.jsx
+import { useEffect, useState, useCallback, useMemo } from "react";
+import {
+  getCart,
+  addToCart,
+  removeCartItem,
+  updateCartItem,
+  setCartPhone,
+} from "../services/cartService";
+import { CartContext } from "./cartContext";
 
-import {useEffect, useState } from 'react'
-import { getCart, addToCart,removeCartItem,updateCartItem ,setCartPhone,recoverCartByPhone} from '../services/cartService'
-import {CartContext} from './cartContext'
- 
 function CartProvider({ children }) {
-  const [cart, setCart] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [cart, setCart] = useState(null);
+  const [loading, setLoading] = useState(true);
 
- 
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const data = await getCart()
-        setCart(data)
+        const data = await getCart();
+        setCart(data);
       } catch (error) {
-        console.error('Error fetching cart:', error)
+        console.error("Error fetching cart:", error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchCart()
-  }, [])
+    fetchCart();
+  }, []);
 
- 
-  const addItem = async (productId, quantity = 1) => {
+  const addItem = useCallback(async (productId, quantity = 1) => {
     try {
-      const updatedCart = await addToCart(productId, quantity)
-
-      setCart(updatedCart)
-
-      return updatedCart
+      const updatedCart = await addToCart(productId, quantity);
+      setCart(updatedCart);
+      return updatedCart;
     } catch (error) {
-      console.error('Error adding item to cart:', error)
-      throw error
+      console.error("Error adding item to cart:", error);
+      throw error;
     }
-  }
+  }, []);
 
-  const removeItem = async (productId) => {
+  const removeItem = useCallback(async (productId) => {
     try {
-      const updatedCart = await removeCartItem(productId)
-
-      setCart(updatedCart)
-
-      return updatedCart
+      const updatedCart = await removeCartItem(productId);
+      setCart(updatedCart);
+      return updatedCart;
     } catch (error) {
-      console.error('Error removing item from cart:', error)
-      throw error
+      console.error("Error removing item from cart:", error);
+      throw error;
     }
-  }
+  }, []);
 
-  const updateItem = async (productId, quantity) => {
-  try {
-    const updatedCart = await updateCartItem(productId, quantity)
-    setCart(updatedCart)
-    return updatedCart
-  } catch (error) {
-    console.error('Error updating cart item:', error)
-    throw error
-  }
+  const updateItem = useCallback(async (productId, quantity) => {
+    try {
+      const updatedCart = await updateCartItem(productId, quantity);
+      setCart(updatedCart);
+      return updatedCart;
+    } catch (error) {
+      console.error("Error updating cart item:", error);
+      throw error;
+    }
+  }, []);
+
+  const confirmPhone = useCallback(async (phoneNumber) => {
+    try {
+      const response = await setCartPhone(phoneNumber);
+      setCart(response.cart);
+      return response.order;
+    } catch (error) {
+      console.error("Error setting cart phone:", error);
+      throw error;
+    }
+  }, []);
+
+  const value = useMemo(
+    () => ({
+      cart,
+      loading,
+      addItem,
+      removeItem,
+      updateItem,
+      confirmPhone,
+    }),
+    [cart, loading, addItem, removeItem, updateItem, confirmPhone],
+  );
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
- const confirmPhone = async (phoneNumber) => {
-    try {
-      const updatedCart = await setCartPhone(phoneNumber)
-      setCart(updatedCart)
-      return updatedCart
-    } catch (error) {
-      console.error('Error setting cart phone:', error)
-      throw error
-    }
-  }
-
- const recoverCart = async (phoneNumber) => {
-    try {
-      const recoveredCart = await recoverCartByPhone(phoneNumber)
-      setCart(recoveredCart)
-      return recoveredCart
-    } catch (error) {
-      console.error('Error recovering cart:', error)
-      throw error
-    }
-  }
-
-  return (
-    <CartContext.Provider
-      value={{
-        cart,
-        loading,
-        addItem,
-        removeItem,
-        updateItem,
-        confirmPhone,
-        recoverCart
-      }}
-    >
-      {children}
-    </CartContext.Provider>
-  )
-}
-
-export default CartProvider
+export default CartProvider;

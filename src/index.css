@@ -1,14 +1,23 @@
 @import "tailwindcss";
 
-
 @keyframes wriggle-outer {
-  0%, 100% { border-radius: 40% 55% 26% 39% / 57% 41% 53% 38%; }
-  50%      { border-radius: 44% 51% 30% 43% / 53% 45% 49% 42%; }
+  0%,
+  100% {
+    border-radius: 40% 55% 26% 39% / 57% 41% 53% 38%;
+  }
+  50% {
+    border-radius: 44% 51% 30% 43% / 53% 45% 49% 42%;
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-16px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
 }
 
 .animate-float {
@@ -20,12 +29,30 @@
   margin-top: 14px;
 }
 
-button{
+button {
   cursor: pointer;
 }
 
-#item-count{
-  position:absolute;
+#item-count {
+  position: absolute;
   right: -2px;
   top: -2px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Fraunces", serif;
+}
+
+@layer base {
+  body,
+  p {
+    font-family: "Manrope", sans-serif;
+  }
+}
+
+@theme {
+  --font-script: "Caveat", cursive;
+  --font-heading: "Fraunces", serif;
 }

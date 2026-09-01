@@ -1,18 +1,17 @@
 export const formatPrice = (amount) => {
-  return new Intl.NumberFormat('en-UG').format(Number(amount))
-}
+  return new Intl.NumberFormat("en-UG").format(Number(amount));
+};
 
- export const buildOrderMessage = (cart) => {
-  const header = `🎂 *New Order*\n\n`
+export const buildOrderMessage = (order) => {
+  const header = `🎂 *New Order*\n\n`;
 
-  const items = cart.items
+  const items = order.items
     .map((item) => {
-      const subtotal = item.quantity * item.product.price
-      return `• ${item.product.name} x${item.quantity} — Ugx ${formatPrice(subtotal)}`
+      return `• ${item.product_name} x${item.quantity} — Ugx ${formatPrice(item.subtotal)}`;
     })
-    .join('\n')
+    .join("\n");
 
-  const footer = `\n\n*Total: Ugx ${formatPrice(cart.total)}*\n\nCart ID: ${cart.cart_id}`
+  const footer = `\n\n*Total: Ugx ${formatPrice(order.total)}*\n\nOrder ID: ${order.order_id}`;
 
-  return header + items + footer
-}
+  return header + items + footer;
+};

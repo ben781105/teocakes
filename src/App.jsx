@@ -1,9 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/HomePage'
-import Layout from './components/global/layout'
-import CartProvider  from './context/cartProvider'
-import CustomCakeForm from './components/customCakeForm'
-import Menu from './components/menu'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/HomePage";
+import Layout from "./components/global/layout";
+import CartProvider from "./context/cartProvider";
+import CustomCakeForm from "./components/customCakeForm";
+import Menu from "./components/menu";
 function App() {
   return (
     <BrowserRouter>
@@ -17,7 +17,7 @@ function App() {
         </Layout>
       </CartProvider>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,18 +1,21 @@
-// src/components/layout/Layout.jsx
-import Footer from '../footer'
-import Navbar from '../navbar'
-import Cart from '../cart'
-import { useState } from 'react'
+import Footer from "../footer";
+import Navbar from "../navbar";
+import Cart from "../cart";
+import { useState, useCallback } from "react";
 function Layout({ children }) {
-  const [cartOpen,setCartOpen] = useState(false)
+  const [cartOpen, setCartOpen] = useState(false);
+
+  const handleCartOpen = useCallback(() => setCartOpen(true), []);
+  const handleCartClose = useCallback(() => setCartOpen(false), []);
+
   return (
     <>
-      <Navbar onCartClick={() => setCartOpen(true)} />
-      {cartOpen && <Cart  isOpen={cartOpen} onClose={() => setCartOpen(false)} />}
+      <Navbar onCartClick={handleCartOpen} />
+      <Cart isOpen={cartOpen} onClose={handleCartClose} />
       {children}
       <Footer />
     </>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

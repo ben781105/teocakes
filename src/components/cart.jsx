@@ -57,7 +57,7 @@ function Cart({ isOpen, onClose }) {
         >
           <motion.div
             onClick={(e) => e.stopPropagation()}
-            className="absolute right-0 top-0 h-full w-full max-w-sm bg-white"
+            className="absolute right-0 top-0 h-full w-full max-w-xs sm:max-w-sm md:max-w-md bg-white"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -66,7 +66,7 @@ function Cart({ isOpen, onClose }) {
             <div className="h-full flex flex-col pb-4">
               <div className="px-4 py-3 flex justify-between items-center">
                 <span className="flex items-center gap-2">
-                  <ShoppingCart className="w-6 h-6" />
+                  <ShoppingCart className="w-5 h-5" />
                   <h2 className="text-lg font-semibold">
                     {orderSent ? "Order Sent" : "Your Order"}
                   </h2>
@@ -176,7 +176,7 @@ function Cart({ isOpen, onClose }) {
                     <button
                       onClick={() => setCheckoutOpen(true)}
                       disabled={!cart || cart.items.length === 0}
-                      className="bg-red-500 text-white py-2 rounded-3xl disabled:opacity-50"
+                      className="bg-brick hover:bg-brick-hover hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-xl text-cream hover:text-white py-3 rounded-3xl disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-md disabled:hover:bg-brick  disabled:cursor-not-allowed"
                     >
                       Checkout
                     </button>
@@ -187,13 +187,13 @@ function Cart({ isOpen, onClose }) {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="Your WhatsApp number, e.g. +2567xxxxxxx"
-                        className="border rounded-full px-4 py-2 text-sm"
+                        className="border border-cream-dark outline-0 focus:border-brick rounded-lg px-3 py-2 "
                       />
                       {error && <p className="text-xs text-red-500">{error}</p>}
                       <button
                         onClick={handleConfirmOrder}
                         disabled={submitting}
-                        className="bg-red-500 text-white py-2 rounded-3xl disabled:opacity-50"
+                        className="bg-brick hover:bg-brick-hover hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-xl text-cream hover:text-white py-3 rounded-3xl disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-md disabled:hover:bg-brick  disabled:cursor-not-allowed"
                       >
                         {submitting ? "Sending..." : "Send Order via WhatsApp"}
                       </button>

@@ -1,18 +1,25 @@
-// src/components/layout/Navbar.jsx
 import { useState, memo } from "react";
 import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import Container from "./layout/container";
 import TopBar from "./TopBar";
 import { motion, AnimatePresence } from "motion/react";
-import { ShoppingCart } from "lucide-react";
 import { useCart } from "../context/useCart";
+import { useWhatsappOrderLink } from "../data/whatsappOrderLink";
+
+const navLinks = [
+  { type: "route", to: "/", label: "Home", end: true },
+  { type: "scroll", id: "about", label: "About" },
+  { type: "route", to: "/custom-order", label: "Custom Order" },
+  { type: "route", to: "/menu", label: "Menu" },
+  { type: "route", to: "/gallery", label: "Gallery" },
+];
 
 function Navbar({ onCartClick }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
+  const whatsappOrderLink = useWhatsappOrderLink("256746326666");
   const { cart } = useCart();
 
   const itemCount =
@@ -30,70 +37,86 @@ function Navbar({ onCartClick }) {
     }
   };
 
-  const linkClass = ({ isActive }) =>
-    `text-sm font-medium transition ${
+  const desktopClass = ({ isActive }) =>
+    `text-sm font-medium transition-colors duration-200  ${
       isActive
-        ? "text-red-600 border-b-2 border-red-600 pb-1"
-        : "text-gray-700 hover:text-gray-900"
+        ? "text-brick border-brick border-b-2 pb-1"
+        : "text-espresso  hover:text-brick border-b-0 pb-0"
     }`;
 
-  const mobileLinkClass = ({ isActive }) =>
-    `text-base font-medium py-2 ${isActive ? "text-red-600" : "text-gray-700"}`;
+  const mobileClass = (isActive) =>
+    `text-base font-medium py-2 text-left transition-colors duration-200 ${
+      isActive ? "text-brick" : "text-espresso hover:text-brick"
+    }`;
+
+  function NavItem({ link, variant }) {
+    if (link.type === "scroll") {
+      return (
+        <button
+          onClick={() => scrollToSection(link.id)}
+          className={
+            variant === "desktop"
+              ? "text-sm font-medium text-espresso border-b-2 border-transparent hover:text-brick hover:border-brick transition-colors duration-200"
+              : mobileClass(false)
+          }
+        >
+          {link.label}
+        </button>
+      );
+    }
+    return (
+      <NavLink
+        to={link.to}
+        end={link.end}
+        onClick={() => setMobileOpen(false)}
+        className={
+          variant === "desktop"
+            ? desktopClass
+            : ({ isActive }) => mobileClass(isActive)
+        }
+      >
+        {link.label}
+      </NavLink>
+    );
+  }
 
   return (
     <div className="sticky top-0 z-50">
       <TopBar />
 
-      <div className="bg-white border-b border-gray-100">
+      <div className="bg-cream shadow-xl">
         <Container className="flex items-center justify-between py-4">
           <Link
             to="/"
             className="flex items-center gap-2"
             onClick={() => setMobileOpen(false)}
           >
-            <span className="text-2xl">🎂</span>
-            <span className=" font-heading text-xl  font-bold text-gray-900">
+            <span className="text-2xl" aria-hidden="true">
+              🎂
+            </span>
+            <span className="font-heading text-xl font-bold text-espresso">
               TeoCakes
             </span>
           </Link>
 
-          {/* Desktop links */}
+          {/* Desktop links — flex row, hidden below md */}
           <div className="hidden md:flex items-center gap-8">
-            <NavLink to="/" end className={linkClass}>
-              Home
-            </NavLink>
-            <button
-              onClick={() => scrollToSection("about")}
-              className="text-sm font-medium text-gray-700 hover:text-gray-900 transition"
-            >
-              About
-            </button>
-            <NavLink to="/custom-order" className={linkClass}>
-              Custom Order
-            </NavLink>
-            <NavLink to="/menu" className={linkClass}>
-              Menu
-            </NavLink>
-            <button
-              onClick={() => scrollToSection("how-it-works")}
-              className="text-sm font-medium text-gray-700 hover:text-gray-900 transition"
-            >
-              How It Works
-            </button>
+            {navLinks.map((link) => (
+              <NavItem key={link.label} link={link} variant="desktop" />
+            ))}
           </div>
 
-          <div className="flex gap-5 items-center ">
+          <div className="flex gap-5 items-center">
             <button
               onClick={onCartClick}
               aria-label={`Cart, ${itemCount} item${itemCount === 1 ? "" : "s"}`}
-              className=" relative self-end w-10 h-10 rounded-full bg-red-200 flex items-center justify-center cursor-pointer"
+              className="relative self-end w-11 h-11 rounded-full bg-cream-dark flex items-center justify-center cursor-pointer"
             >
-              <ShoppingCart />
+              <ShoppingCart className="w-5 h-5" aria-hidden="true" />
               {itemCount > 0 && (
                 <span
-                  id="item-count"
                   aria-hidden="true"
-                  className="w-4 h-4 text-[15px] bg-red-500 text-white rounded-full flex items-center justify-center"
+                  className="absolute -top-1 -right-1 w-4 h-4 text-[11px] bg-brick text-white rounded-full flex items-center justify-center"
                 >
                   {itemCount}
                 </span>
@@ -101,17 +124,16 @@ function Navbar({ onCartClick }) {
             </button>
 
             <a
-              href="https://wa.me/256700000000?text=Hi!%20I'd%20like%20to%20order%20a%20cake."
+              href={whatsappOrderLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center justify-center gap-2 bg-red-600 text-white  py-2.5 w-40 rounded-lg text-sm font-medium hover:bg-red-700 transition"
+              className="hidden md:inline-flex items-center rounded-3xl justify-center gap-2 font-medium bg-brick text-cream hover:bg-brick-hover hover:-translate-y-0.5 shadow-md hover:shadow-xl duration-300 py-2.5 w-43  transition"
             >
               Order Online
             </a>
 
-            {/* Mobile toggle button */}
             <button
-              className="md:hidden p-2 text-gray-700 cursor-pointer"
+              className="md:hidden p-2 text-espresso cursor-pointer"
               onClick={() => setMobileOpen((prev) => !prev)}
               aria-label="Toggle menu"
             >
@@ -125,6 +147,7 @@ function Navbar({ onCartClick }) {
         </Container>
       </div>
 
+      {/* Mobile menu — flex column, only rendered below md */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -135,51 +158,9 @@ function Navbar({ onCartClick }) {
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <Container className="flex flex-col gap-1 py-4">
-              <NavLink
-                to="/"
-                end
-                className={mobileLinkClass}
-                onClick={() => setMobileOpen(false)}
-              >
-                Home
-              </NavLink>
-              <button
-                onClick={() => scrollToSection("about")}
-                className="text-base font-medium text-gray-700 py-2 text-left"
-              >
-                About
-              </button>
-              <NavLink
-                to="/custom-order"
-                className={mobileLinkClass}
-                onClick={() => setMobileOpen(false)}
-              >
-                Custom Order
-              </NavLink>
-              <NavLink
-                to="/menu"
-                className={mobileLinkClass}
-                onClick={() => setMobileOpen(false)}
-              >
-                Menu
-              </NavLink>
-              <button
-                onClick={() => scrollToSection("how-it-works")}
-                className="text-base font-medium text-gray-700 py-2 text-left"
-              >
-                How It Works
-              </button>
-
-              <a
-                href="https://wa.me/256700000000?text=Hi!%20I'd%20like%20to%20order%20a%20cake."
-                target="_blank"
-                rel="noopener noreferrer"
-                className=" w-[40%] flex justify-center items-center gap-2 bg-red-600 text-white px-5 py-3 rounded-4xl text-sm font-medium mt-3"
-                onClick={() => setMobileOpen(false)}
-              >
-                Order Online
-                <span className="text-base ">↗</span>
-              </a>
+              {navLinks.map((link) => (
+                <NavItem key={link.label} link={link} variant="mobile" />
+              ))}
             </Container>
           </motion.div>
         )}

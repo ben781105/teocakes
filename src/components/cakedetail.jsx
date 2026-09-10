@@ -49,7 +49,7 @@ function CakeDetail({ cake, onClose }) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative bg-white rounded-2xl max-w-3xl w-full h-[90vh] md:h-100 flex flex-col md:flex-row overflow-hidden"
+        className="relative bg-white rounded-2xl max-w-3xl w-full h-[90vh] md:h-110 flex flex-col md:flex-row overflow-hidden"
       >
         <button
           className="absolute z-10 top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#e5e5e5] shadow-emerald-100"
@@ -70,7 +70,9 @@ function CakeDetail({ cake, onClose }) {
           <div className="flex flex-col gap-3">
             <h2>{name}</h2>
             <p>{description}</p>
-            <p>Ugx&nbsp;{formatPrice(price ?? 0)}</p>
+            <p className="text-brick font-bold text-xl">
+              Ugx&nbsp;{formatPrice(price ?? 0)}
+            </p>
 
             <div className="flex items-center gap-4 mt-4 ">
               <div className="flex items-center gap-3 border rounded-full w-fit px-3 py-1">
@@ -79,20 +81,20 @@ function CakeDetail({ cake, onClose }) {
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                   aria-label="Decrease quantity"
                 >
-                  <Minus />
+                  <Minus className="w-4 h-4 text-espresso" />
                 </button>
-                <span>{quantity}</span>
+                <span className="font-medium text-espresso">{quantity}</span>
                 <button
                   className="flex items-center justify-center w-8 h-8 rounded-full"
                   onClick={() => setQuantity((q) => q + 1)}
                   aria-label="Increase quantity"
                 >
-                  <Plus />
+                  <Plus className="w-4 h-4 text-espresso" />
                 </button>
               </div>
 
               <button
-                className="border px-3 rounded-3xl w-1/2 h-12 flex items-center justify-center"
+                className="border px-3 rounded-3xl w-50 md:w-40 h-12 flex items-center justify-center font-medium bg-brick text-cream shadow-md hover:shadow-xl hover:bg-brick-hover hover:-translate-y-0.5 transition-all duration-200"
                 onClick={handleAddToCart}
               >
                 {" "}

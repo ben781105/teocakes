@@ -8,7 +8,7 @@ import { formatPrice } from "../data/numberFormatter.js";
 const FavouriteCard = memo(function FavouriteCard({ cake, onSelect }) {
   const { id, image, name, price, description } = cake;
   return (
-    <div className="group flex flex-col overflow-hidden rounded-2xl border">
+    <div className="group flex flex-col overflow-hidden rounded-2xl border-cream  bg-white shadow-md hover:shadow-lg transition-transform duration-300 lg:hover:scale-103">
       <div className="relative aspect-square sm:aspect-video md:aspect-square overflow-hidden">
         <img
           src={image}
@@ -19,7 +19,7 @@ const FavouriteCard = memo(function FavouriteCard({ cake, onSelect }) {
           type="button"
           aria-label={`Add ${name} to selection`}
           onClick={() => onSelect({ id, image, name, price, description })}
-          className="absolute bottom-3 cursor-pointer right-3 translate-y-1/2 z-10 transition-transform duration-300 ease-out group-hover:rotate-90 group-hover:scale-110 bg-red-500 border-3 border-white rounded-full p-2"
+          className="absolute bottom-3 cursor-pointer right-3 translate-y-1/2 z-10 transition-transform duration-300 ease-out group-hover:rotate-90 group-hover:scale-110 font-medium bg-brick text-cream hover:text-white hover:bg-brick-hover border-3 border-white rounded-full p-2"
         >
           <Plus className="w-6 h-6 text-white" />
         </button>
@@ -27,7 +27,7 @@ const FavouriteCard = memo(function FavouriteCard({ cake, onSelect }) {
 
       <div className="z-5 p-3 md:p-4 flex flex-1 flex-col justify-center">
         <h3>{name}</h3>
-        <p>Ugx&nbsp;{formatPrice(price)}</p>
+        <p className="font-bold  text-brick">Ugx&nbsp;{formatPrice(price)}</p>
       </div>
     </div>
   );
@@ -62,9 +62,11 @@ function Favourites() {
   }, []);
 
   return (
-    <Section id="favourites">
+    <Section id="favourites" className="bg-cream">
       <div className="flex flex-col">
-        <p className=" font-script self-center">Customer Favourites</p>
+        <p className=" font-script text-brick text-2xl  lg:text-3xl self-center">
+          Customer Favourites
+        </p>
         <h2 className="text-center">Our Delicious Cakes</h2>
         <FavouriteGrid cakes={cakes} onSelect={setSelectedCake} />
       </div>

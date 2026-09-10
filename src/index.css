@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+@theme {
+  --font-script: "Caveat", cursive;
+  --font-heading: "Fraunces", serif;
+  --color-cream: #fff9f1;
+  --color-cream-dark: #fff1de;
+  --color-brown: #6b5642;
+  --color-espresso: #241608;
+  --color-brick: #c81d25;
+  --color-brick-hover: #921116;
+  --color-announcement: #153015;
+  --color-gold: #f2a93b;
+}
+
 @keyframes wriggle-outer {
   0%,
   100% {
@@ -29,30 +42,83 @@
   margin-top: 14px;
 }
 
-button {
+button,
+a {
   cursor: pointer;
 }
 
+select,
+input,
+textarea {
+  background-color: var(--color-cream);
+}
+
+select:focus,
+input:focus,
+textarea:focus {
+  background-color: white;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
 #item-count {
   position: absolute;
   right: -2px;
   top: -2px;
 }
 
-h1,
-h2,
-h3 {
-  font-family: "Fraunces", serif;
-}
-
 @layer base {
+  h1 {
+    font-size: clamp(1.75rem, 3vw + 1rem, 2.75rem); /* ~28px → 44px */
+    line-height: 1.15;
+    font-family: "Fraunces", serif;
+    color: var(--color-espresso);
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem); /* ~24px → 36px */
+    line-height: 1.25;
+    font-family: "Fraunces", serif;
+    color: var(--color-espresso);
+  }
+
+  h3 {
+    font-size: clamp(1rem, 0.6vw + 0.75rem, 1.125rem); /* ~16px → 18px */
+    line-height: 1.35;
+    font-family: "Fraunces", serif;
+    color: var(--color-espresso);
+  }
+
   body,
   p {
     font-family: "Manrope", sans-serif;
+    font-size: clamp(0.9rem, 0.2vw + 0.85rem, 1rem); /* ~14px → 16px */
+    line-height: 1.6;
+    color: var(--color-brown);
   }
 }
 
-@theme {
-  --font-script: "Caveat", cursive;
-  --font-heading: "Fraunces", serif;
+@layer utilities {
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-spin-slow {
+    animation: spin-slow 16s linear infinite;
+  }
+}
+
+.animate-spin-slow:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-slow {
+    animation: none;
+  }
 }

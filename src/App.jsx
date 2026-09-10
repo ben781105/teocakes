@@ -4,6 +4,7 @@ import Layout from "./components/global/layout";
 import CartProvider from "./context/cartProvider";
 import CustomCakeForm from "./components/customCakeForm";
 import Menu from "./components/menu";
+import Gallery from "./components/gallery";
 function App() {
   return (
     <BrowserRouter>
@@ -13,6 +14,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/custom-order" element={<CustomCakeForm />} />
             <Route path="/menu" element={<Menu />} />
+            <Route path="/gallery" element={<Gallery />} />
           </Routes>
         </Layout>
       </CartProvider>

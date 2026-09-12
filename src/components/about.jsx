@@ -8,6 +8,7 @@ function About() {
         <div className="w-full aspect-square">
           <img
             src={aboutImage}
+            loading="lazy"
             alt="About TeoCakes"
             className="object-cover w-full h-full rounded-3xl border-7 border-white shadow-lg"
           />

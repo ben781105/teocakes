@@ -114,6 +114,7 @@ function Gallery() {
               <img
                 src={cake.image}
                 alt={cake.name}
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-end">
@@ -145,6 +146,7 @@ function Gallery() {
             <img
               src={selectedCake.image}
               alt={selectedCake.name}
+              loading="lazy"
               className="w-full max-h-80 object-cover"
             />
             <div className="p-5 bg-white flex flex-col gap-3">

@@ -115,6 +115,7 @@ function Cart({ isOpen, onClose }) {
                             className="w-full h-full object-cover rounded-full"
                             src={item.product.image}
                             alt={item.product.name}
+                            loading="lazy"
                           />
                         </span>
                         <div className="flex flex-col gap-1">

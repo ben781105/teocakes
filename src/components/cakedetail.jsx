@@ -62,6 +62,7 @@ function CakeDetail({ cake, onClose }) {
           <img
             src={image}
             alt={name}
+            loading="lazy"
             className="w-full h-full object-cover rounded-2xl"
           />
         </div>

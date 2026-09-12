@@ -33,6 +33,7 @@ function TestimonialCard({ name, src, text, rating, status }) {
           <img
             src={src}
             alt={name}
+            loading="lazy"
             className="w-12 h-12 rounded-full object-cover"
           />
         </div>

@@ -59,6 +59,7 @@ const CakeCard = memo(function CakeCard({ cake, onSelect }) {
       <img
         src={image}
         alt={name}
+        loading="lazy"
         className="w-16 h-16 object-cover rounded-full shrink-0"
       />
       <div className="flex-1">

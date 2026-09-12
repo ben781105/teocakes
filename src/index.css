@@ -37,6 +37,21 @@
   animation: float 4s ease-in-out infinite;
 }
 
+@layer utilities {
+  @keyframes float_button {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+  .animate-float_button {
+    animation: float_button 3s ease-in-out infinite;
+  }
+}
+
 .testimonial-swiper .swiper-pagination {
   position: relative;
   margin-top: 14px;

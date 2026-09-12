@@ -2,7 +2,7 @@ import { useState, memo } from "react";
 import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import Container from "./layout/container";
-import TopBar from "./TopBar";
+import TopBar from "./topbar";
 import { motion, AnimatePresence } from "motion/react";
 import { useCart } from "../context/useCart";
 import { useWhatsappOrderLink } from "../data/whatsappOrderLink";

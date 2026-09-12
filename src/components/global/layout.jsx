@@ -1,6 +1,8 @@
 import Footer from "../footer";
 import Navbar from "../navbar";
 import Cart from "../cart";
+import WhatsappFloatButton from "../global/whatsappButton";
+import ScrollToTopButton from "../global/scrolltopbutton";
 import { useState, useCallback } from "react";
 function Layout({ children }) {
   const [cartOpen, setCartOpen] = useState(false);
@@ -14,6 +16,8 @@ function Layout({ children }) {
       <Cart isOpen={cartOpen} onClose={handleCartClose} />
       {children}
       <Footer />
+      <WhatsappFloatButton />
+      <ScrollToTopButton />
     </>
   );
 }

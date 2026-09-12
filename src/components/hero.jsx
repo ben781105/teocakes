@@ -21,15 +21,15 @@ function Hero() {
 
           <div className="flex gap-3 mt-2">
             <a
-              href="/menu"
-              className="px-6 py-3 rounded-lg font-medium bg-brick text-cream  hover:shadow-xl hover:bg-brick-hover hover:-translate-y-0.5 transition-all duration-300 shadow-md"
+              href="/custom-order"
+              className=" text-base px-6 py-3 rounded-lg font-medium bg-brick text-cream  hover:shadow-xl hover:bg-brick-hover hover:-translate-y-0.5 transition-all duration-300 shadow-md"
             >
               Order Your Bake
             </a>
 
             <a
               href="/menu"
-              className="border font-medium shadow-md  border-espresso text-espresso px-6 py-3 rounded-lg  hover:bg-espresso hover:text-cream hover:-translate-y-0.5 transition-all duration-300"
+              className=" text-base border font-medium shadow-md  border-espresso text-espresso px-6 py-3 rounded-lg  hover:bg-espresso hover:text-cream hover:-translate-y-0.5 transition-all duration-300"
             >
               View Menu
             </a>

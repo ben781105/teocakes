@@ -79,16 +79,14 @@ function Cart({ isOpen, onClose }) {
 
               {orderSent ? (
                 <div className="h-full flex flex-col gap-3 items-center justify-center px-4 text-center">
-                  <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
-                    <Check className="w-8 h-8 text-green-600" />
+                  <div className="w-16 h-16 rounded-full bg-brick flex items-center justify-center">
+                    <Check className="w-8 h-8 text-white" />
                   </div>
                   <h3>Order sent!</h3>
-                  <p className="text-sm text-gray-500">
-                    Check WhatsApp to confirm and complete your order.
-                  </p>
+                  <p>Check WhatsApp to confirm and complete your order.</p>
                   <button
                     onClick={handleClose}
-                    className="mt-2 bg-red-500 text-white px-6 py-2 rounded-3xl"
+                    className="mt-2 bg-brick hover:bg-brick-hover hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-xl text-cream hover:text-white  px-6 py-2 rounded-3xl"
                   >
                     Done
                   </button>
@@ -112,9 +110,9 @@ function Cart({ isOpen, onClose }) {
                       className="py-4 flex justify-between items-center gap-3 border-b border-gray-200 last:border-b-0"
                     >
                       <div className="flex items-center gap-4">
-                        <span className="w-14 h-14 shrink-0">
+                        <span className="w-16 h-16 shrink-0">
                           <img
-                            className="w-full h-full object-cover rounded-lg"
+                            className="w-full h-full object-cover rounded-full"
                             src={item.product.image}
                             alt={item.product.name}
                           />

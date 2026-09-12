@@ -1,5 +1,5 @@
 import { Phone, Mail, MapPin } from "lucide-react";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa6";
+import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import Container from "./layout/container";
 
 function TopBar() {
@@ -11,45 +11,45 @@ function TopBar() {
             href="tel:+256700000000"
             className="flex items-center gap-1.5 hover:text-white transition"
           >
-            <Phone className="w-3.5 h-3.5 text-orange-500" />
+            <Phone className="w-3.5 h-3.5 text-gold" />
             +256 700 000 000
           </a>
           <a
             href="mailto:hello@bakeryname.com"
             className="flex items-center gap-1.5 hover:text-white transition"
           >
-            <Mail className="w-3.5 h-3.5 text-orange-500" />
+            <Mail className="w-3.5 h-3.5 text-gold" />
             hello@bakeryname.com
           </a>
           <span className="flex items-center gap-1.5">
-            <MapPin className="w-3.5 h-3.5 text-orange-500" />
+            <MapPin className="w-3.5 h-3.5 text-gold" />
             Entebbe, Uganda
           </span>
         </div>
 
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-green-500" />
+            <span className="w-2 h-2 rounded-full bg-gold" />
             Taking orders: 9AM - 6PM
           </span>
           <div className="flex items-center gap-2">
             <a
-              href="#"
-              className="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition"
+              href="https://www.facebook.com"
+              className="w-8 h-8 rounded-full flex items-center justify-center bg-white/10 hover:bg-gold duration-300 transition hover:-translate-y-0.5"
             >
-              <FaFacebook className="w-3 h-3" />
+              <FaFacebook className="w-4 h-4 text-white" />
             </a>
             <a
-              href="#"
-              className="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition"
+              href="https://www.instagram.com"
+              className="w-8 h-8 rounded-full flex items-center justify-center bg-white/10 hover:bg-gold duration-300 transition hover:-translate-y-0.5"
             >
-              <FaInstagram className="w-3 h-3" />
+              <FaInstagram className="w-4 h-4 text-white" />
             </a>
             <a
-              href="#"
-              className="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition"
+              href="https://www.X.com"
+              className="w-8 h-8 rounded-full flex items-center justify-center bg-white/10 hover:bg-gold duration-300 transition hover:-translate-y-0.5"
             >
-              <FaTwitter className="w-3 h-3" />
+              <FaXTwitter className="w-4 h-4 text-white" />
             </a>
           </div>
         </div>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Section from "./layout/section";
 import { getCakes } from "../services/cakeService";
+import PillSkeleton from "./skeletons/pillSkeleton";
+import GallerySkeleton from "./skeletons/gallerySkeleton";
 
 function Gallery() {
   const [cakes, setCakes] = useState([]);
@@ -34,7 +36,6 @@ function Gallery() {
       ? cakes
       : cakes.filter((c) => c.category_name === activeCategory);
 
-  // Close on Escape, lock background scroll while lightbox is open
   useEffect(() => {
     if (!selectedCake) return;
     document.body.style.overflow = "hidden";
@@ -60,42 +61,55 @@ function Gallery() {
       </p>
 
       {/* Category tabs */}
-      {!loading && !error && cakes.length > 0 && (
+      {loading ? (
         <div className="flex flex-wrap justify-center gap-2 mb-6">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-3 py-2 rounded-full text-sm border transition-colors duration-300 ${
-                activeCategory === cat
-                  ? "bg-brick border-brick text-white"
-                  : "bg-white border-cream-dark  hover:border-brick hover:bg-brick hover:text-white"
-              }`}
-            >
-              {cat}
-            </button>
+          {["w-14", "w-20", "w-24", "w-16", "w-28", "w-32", "w-30"].map(
+            (w, i) => (
+              <PillSkeleton key={i} width={w} />
+            ),
+          )}
+        </div>
+      ) : (
+        !error &&
+        cakes.length > 0 && (
+          <div className="flex flex-wrap justify-center gap-2 mb-6">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-3 py-2 rounded-full text-sm border transition-colors duration-300 ${
+                  activeCategory === cat
+                    ? "bg-brick border-brick text-white"
+                    : "bg-white border-cream-dark hover:border-brick hover:bg-brick hover:text-white"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        )
+      )}
+
+      {/* Grid */}
+      {loading && (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {Array.from({ length: 9 }).map((_, i) => (
+            <GallerySkeleton key={i} />
           ))}
         </div>
       )}
 
-      {loading && (
-        <p className="text-center text-gray-500 text-sm py-10">
-          Loading gallery...
-        </p>
-      )}
-
       {error && !loading && (
-        <p className="text-center text-red-500 text-sm py-10">{error}</p>
+        <p className="text-center text-brick text-sm py-10">{error}</p>
       )}
 
-      {/* Grid */}
       {!loading && !error && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           {visibleCakes.map((cake) => (
             <button
               key={cake.id}
               onClick={() => setSelectedCake(cake)}
-              className="group relative aspect-square overflow-hidden "
+              className="group relative aspect-square overflow-hidden rounded-lg"
             >
               <img
                 src={cake.image}
@@ -113,7 +127,7 @@ function Gallery() {
       )}
 
       {!loading && !error && visibleCakes.length === 0 && (
-        <p className="text-center text-gray-500 text-sm mt-6">
+        <p className="text-center text-brown text-sm mt-6">
           No cakes in this category yet.
         </p>
       )}
@@ -134,17 +148,13 @@ function Gallery() {
               className="w-full max-h-80 object-cover"
             />
             <div className="p-5 bg-white flex flex-col gap-3">
-              <div>
-                <h3 className="font-semibold">{selectedCake.name}</h3>
-              </div>
-              <div className="flex flex-col gap-2">
-                <p>{selectedCake.description}</p>
-              </div>
+              <h3 className="font-semibold">{selectedCake.name}</h3>
+              <p>{selectedCake.description}</p>
             </div>
             <button
               onClick={() => setSelectedCake(null)}
               aria-label="Close"
-              className="absolute top-3 right-3 bg-white/90 rounded-full w-8 h-8 flex items-center justify-center text-gray-700"
+              className="absolute top-3 right-3 bg-white/90 rounded-full w-8 h-8 flex items-center justify-center text-espresso"
             >
               ✕
             </button>

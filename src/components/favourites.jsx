@@ -4,6 +4,7 @@ import Section from "./layout/section.jsx";
 import { Plus } from "lucide-react";
 import CakeDetail from "./cakedetail.jsx";
 import { formatPrice } from "../data/numberFormatter.js";
+import CardSkeleton from "./skeletons/favouriteCardSkeleton.jsx";
 
 const FavouriteCard = memo(function FavouriteCard({ cake, onSelect }) {
   const { id, image, name, price, description } = cake;
@@ -33,12 +34,18 @@ const FavouriteCard = memo(function FavouriteCard({ cake, onSelect }) {
   );
 });
 
-const FavouriteGrid = memo(function FavouriteGrid({ cakes, onSelect }) {
+const FavouriteGrid = memo(function FavouriteGrid({
+  cakes,
+  onSelect,
+  isLoading,
+}) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mt-8">
-      {cakes.map((cake) => (
-        <FavouriteCard key={cake.id} cake={cake} onSelect={onSelect} />
-      ))}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 mt-8">
+      {isLoading
+        ? Array.from({ length: 4 }).map((_, i) => <CardSkeleton key={i} />)
+        : cakes.map((cake) => (
+            <FavouriteCard key={cake.id} cake={cake} onSelect={onSelect} />
+          ))}
     </div>
   );
 });
@@ -46,16 +53,20 @@ const FavouriteGrid = memo(function FavouriteGrid({ cakes, onSelect }) {
 function Favourites() {
   const [cakes, setCakes] = useState([]);
   const [selectedCake, setSelectedCake] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleCloseDetail = useCallback(() => setSelectedCake(null), []);
 
   useEffect(() => {
     const fetchFavourites = async () => {
+      setIsLoading(true);
       try {
         const data = await getFavourites();
         setCakes(data);
       } catch (error) {
         console.error("error fetching favourites", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchFavourites();
@@ -68,7 +79,11 @@ function Favourites() {
           Customer Favourites
         </p>
         <h2 className="text-center">Our Delicious Cakes</h2>
-        <FavouriteGrid cakes={cakes} onSelect={setSelectedCake} />
+        <FavouriteGrid
+          cakes={cakes}
+          onSelect={setSelectedCake}
+          isLoading={isLoading}
+        />
       </div>
 
       {selectedCake && (

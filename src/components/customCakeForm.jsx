@@ -147,8 +147,8 @@ function CustomCakeForm() {
     "border border-cream-dark outline-0 focus:border-brick rounded-lg px-3 py-2 appearance-none";
 
   return (
-    <Section className="pt-0 bg-cream">
-      <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg border border-cream-dark ">
+    <Section className=" bg-cream px-0">
+      <div className="max-w-3xl mx-auto bg-white py-6 px-4 rounded-lg border border-cream-dark ">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-4  mx-auto pb-4 "
@@ -164,7 +164,7 @@ function CustomCakeForm() {
           </p>
           <h3>1. Your Details</h3>
           <hr className="border-cream-dark" />
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="flex flex-col gap-1">
               <label className="text-sm font-medium">Your Name *</label>
               <input
@@ -198,7 +198,7 @@ function CustomCakeForm() {
           </div>
           <h3>2. Cake Details</h3>
           <hr className="border-cream-dark" />
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="flex flex-col gap-1">
               <label className="text-sm font-medium">
                 Cake Size / Servings
@@ -234,7 +234,7 @@ function CustomCakeForm() {
               </select>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid  grid-cols-1 md:grid-cols-2 gap-3">
             <div className="flex flex-col gap-1">
               <label className="text-sm font-medium">Occasion</label>
               <select

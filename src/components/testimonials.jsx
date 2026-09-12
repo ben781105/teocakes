@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import StarRating from "./starRating";
+import StarRating from "./starrating";
 import Section from "./layout/section";
 import { testimonials } from "../data/testimonials";
 

@@ -85,21 +85,21 @@ button:disabled {
 
 @layer base {
   h1 {
-    font-size: clamp(1.75rem, 3vw + 1rem, 2.75rem); /* ~28px → 44px */
+    font-size: clamp(2rem, 4vw + 1rem, 2.75rem); /* ~32px → 44px */
     line-height: 1.15;
     font-family: "Fraunces", serif;
     color: var(--color-espresso);
   }
 
   h2 {
-    font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem); /* ~24px → 36px */
+    font-size: clamp(1.75rem, 3vw + 1rem, 2.25rem); /* ~28px → 36px */
     line-height: 1.25;
     font-family: "Fraunces", serif;
     color: var(--color-espresso);
   }
 
   h3 {
-    font-size: clamp(1rem, 0.6vw + 0.75rem, 1.125rem); /* ~16px → 18px */
+    font-size: clamp(1.125rem, 0.8vw + 0.9rem, 1.25rem); /* ~18px → 20px */
     line-height: 1.35;
     font-family: "Fraunces", serif;
     color: var(--color-espresso);
@@ -108,7 +108,7 @@ button:disabled {
   body,
   p {
     font-family: "Manrope", sans-serif;
-    font-size: clamp(0.9rem, 0.2vw + 0.85rem, 1rem); /* ~14px → 16px */
+    font-size: clamp(1rem, 0.3vw + 0.95rem, 1.0625rem); /* ~16px → 17px */
     line-height: 1.6;
     color: var(--color-brown);
   }

@@ -67,7 +67,7 @@ function CakeDetail({ cake, onClose }) {
           />
         </div>
 
-        <div className="w-full md:w-1/2 h-1/2 md:h-full p-8  md:p-8 flex flex-col md:justify-center md:items-center  overflow-y-auto">
+        <div className="w-full md:w-1/2 h-1/2 md:h-full p-5  md:p-8 flex flex-col md:justify-center md:items-center  overflow-y-auto">
           <div className="flex flex-col gap-3">
             <h2>{name}</h2>
             <p>{description}</p>

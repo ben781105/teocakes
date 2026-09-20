@@ -30,7 +30,7 @@ function About() {
           </p>
           <Link
             to="/menu"
-            className="w-[45%] sm:w-[30%] border text-center py-3  rounded-lg mt-5 font-medium bg-brick text-cream shadow-md hover:shadow-xl hover:bg-brick-hover hover:-translate-y-0.5 transition-all duration-300"
+            className="w-[50%] sm:w-[30%] border text-center py-3  rounded-lg mt-5 font-medium bg-brick text-cream shadow-md hover:shadow-xl hover:bg-brick-hover hover:-translate-y-0.5 transition-all duration-300"
           >
             Explore our menu
           </Link>

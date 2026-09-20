@@ -49,7 +49,7 @@ function CakeDetail({ cake, onClose }) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative bg-white rounded-2xl max-w-3xl w-full h-[90vh] md:h-110 flex flex-col md:flex-row overflow-hidden"
+        className="relative bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] md:h-110 flex flex-col md:flex-row overflow-hidden"
       >
         <button
           className="absolute z-10 top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#e5e5e5] shadow-emerald-100"

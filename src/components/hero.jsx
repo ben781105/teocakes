@@ -10,11 +10,11 @@ function Hero() {
             Baked fresh, just for you
           </p>
 
-          <h1 className=" font-semibold text-gray-900 leading-tight">
+          <h1 className=" font-semibold  leading-tight">
             Fresh, handmade cakes for every celebration
           </h1>
 
-          <p className="text-gray-600 max-w-md">
+          <p className=" max-w-md">
             Handmade birthday, wedding, and custom cakes baked fresh in Entebbe.
             Browse our menu or message us on WhatsApp to order in minutes.
           </p>

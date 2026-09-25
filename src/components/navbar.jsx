@@ -6,6 +6,7 @@ import TopBar from "./topbar";
 import { motion, AnimatePresence } from "motion/react";
 import { useCart } from "../context/useCart";
 import { useWhatsappOrderLink } from "../data/whatsappOrderLink";
+import logo from "../assets/logo.svg";
 
 const navLinks = [
   { type: "route", to: "/", label: "Home", end: true },
@@ -91,10 +92,14 @@ function Navbar({ onCartClick }) {
             className="flex items-center gap-2"
             onClick={() => setMobileOpen(false)}
           >
-            <span className="text-2xl" aria-hidden="true">
-              🎂
+            <span className="w-7 h-7" aria-hidden="true">
+              <img
+                src={logo}
+                alt="logo"
+                className="w-full h-full object-cover"
+              />
             </span>
-            <span className="font-heading text-xl font-bold text-espresso">
+            <span className="font-heading text-xl md:text-2xl font-bold text-espresso">
               TeoCakes
             </span>
           </Link>

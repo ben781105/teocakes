@@ -9,16 +9,16 @@ const MARQUEE_ITEMS = [
 
 function Marquee() {
   return (
-    <div className="bg-espresso text-cream overflow-hidden py-5">
+    <div className="bg-espresso text-cream overflow-hidden py-4">
       <div className="marquee-track flex w-max">
         {[0, 1].map((rep) => (
           <div key={rep} className="flex shrink-0">
             {MARQUEE_ITEMS.map((item, i) => (
               <span
                 key={`${rep}-${i}`}
-                className=" font-heading flex text-xl items-center text-white  font-medium tracking-wide px-6 whitespace-nowrap gap-7"
+                className=" font-heading flex text-base items-center text-white  font-medium tracking-wide px-6 whitespace-nowrap gap-7"
               >
-                <Star size={14} className="mr-2 fill-white" />
+                <Star size={14} className="mr-2 fill-gold" />
                 {item}
               </span>
             ))}

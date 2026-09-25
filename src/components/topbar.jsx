@@ -12,14 +12,14 @@ function TopBar() {
             className="flex items-center gap-1.5 hover:text-white transition"
           >
             <Phone className="w-3.5 h-3.5 text-gold" />
-            +256 700 000 000
+            +256 708 693 920
           </a>
           <a
-            href="mailto:hello@bakeryname.com"
+            href="mailto:benardleno78@gmail.com"
             className="flex items-center gap-1.5 hover:text-white transition"
           >
             <Mail className="w-3.5 h-3.5 text-gold" />
-            hello@bakeryname.com
+            benardleno78@gmail.com
           </a>
           <span className="flex items-center gap-1.5">
             <MapPin className="w-3.5 h-3.5 text-gold" />

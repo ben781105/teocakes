@@ -2,6 +2,7 @@
 import { MapPin, Phone, Mail } from "lucide-react";
 import { getCategories } from "../services/categoryService";
 import { useEffect, useState } from "react";
+import logo from "../assets/logo.svg";
 import {
   FaFacebook,
   FaInstagram,
@@ -24,10 +25,14 @@ function Footer() {
           {/* Brand */}
           <div className="sm:col-span-2 md:col-span-1 ">
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-2xl" aria-hidden="true">
-                🎂
+              <span className="w-7 h-7" aria-hidden="true">
+                <img
+                  src={logo}
+                  alt="logo"
+                  className="w-full h-full object-cover"
+                />
               </span>
-              <span className="font-heading text-xl font-semibold text-white">
+              <span className="font-heading text-xl md:text-2xl font-bold text-white">
                 TeoCakes
               </span>
             </div>
@@ -172,12 +177,12 @@ function Footer() {
                   className="w-4 h-4 text-gold shrink-0"
                   aria-hidden="true"
                 />
-                <span className="text-sm text-white/80">+256 700 000 000</span>
+                <span className="text-sm text-white/80">+256 708 693 920</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-gold" aria-hidden="true" />
                 <span className="text-sm text-white/80">
-                  hello@bakeryname.com
+                  benardleno78@gmail.com
                 </span>
               </li>
             </ul>

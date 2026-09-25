@@ -52,12 +52,8 @@ function CakeDetailPage() {
   }, [cake]);
 
   const handleAddToCart = useCallback(async () => {
-    console.log("message state:", message);
     if (!cake) return;
-    console.log("DETAIL PAGE PASSING:", {
-      message,
-      flavourId: selectedFlavour,
-    });
+
     setAdding(true);
     try {
       await addItem(cake.id, quantity, {

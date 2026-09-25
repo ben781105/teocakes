@@ -19,7 +19,8 @@ function About() {
             Welcome to TeoCakes
           </p>
           <h2>
-            Cakes baked with passion, made for your <span>celebration</span>
+            <span className="font-heading text-brick">Cakes</span> baked with
+            passion, made for your <span>celebration</span>
           </h2>
           <p>
             At TeoCakes, every cake starts from scratch with real butter and

@@ -19,7 +19,10 @@ function CategorySection() {
         <p className=" font-script text-brick text-2xl  lg:text-3xl self-center">
           What's Baking
         </p>
-        <h2 className="text-center mt-2">Browse Cake Categories</h2>
+        <h2 className="text-center mt-2">
+          Browse <span className="font-heading text-brick">Cake</span>{" "}
+          Categories
+        </h2>
         {isLoading ? (
           <div className="grid grid-cols-2 md:grid-cols-6 gap-5 mt-10">
             {Array.from({ length: 6 }).map((_, i) => (

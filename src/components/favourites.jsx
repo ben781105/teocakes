@@ -100,7 +100,9 @@ function Favourites() {
         <p className=" font-script text-brick text-2xl  lg:text-3xl self-center">
           Customer Favourites
         </p>
-        <h2 className="text-center">Our Delicious Cakes</h2>
+        <h2 className="text-center">
+          Our Delicious <span className="font-heading text-brick">Cakes</span>
+        </h2>
         <FavouriteGrid
           cakes={cakes}
           onSelect={handleSelectedCake}

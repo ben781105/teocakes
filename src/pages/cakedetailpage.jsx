@@ -106,7 +106,7 @@ function CakeDetailPage() {
               <span className="text-espresso">{cake.name}</span>
             </nav>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 min-w-0">
               {/* Image gallery */}
               <div className="flex flex-col md:flex-row-reverse gap-3">
                 <div className="aspect-square rounded-2xl overflow-hidden flex-1">
@@ -143,7 +143,7 @@ function CakeDetailPage() {
               </div>
 
               {/* Details */}
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 min-w-0">
                 <h1 className="text-3xl md:text-4xl font-medium text-espresso">
                   {cake.name}
                 </h1>
@@ -219,7 +219,7 @@ function CakeDetailPage() {
                   examples — your cake will be made specially for you.
                 </p>
 
-                <div className="flex items-center gap-4 mt-2">
+                <div className="flex items-center gap-4 mt-2 flex-wrap">
                   <div className="flex items-center gap-3 border rounded-full w-fit px-3 py-1">
                     <button
                       className="flex items-center justify-center w-8 h-8 rounded-full"
@@ -241,7 +241,7 @@ function CakeDetailPage() {
                   </div>
 
                   <button
-                    className="border px-3 rounded-3xl w-50 md:w-40 h-12 flex items-center justify-center font-medium bg-brick text-cream shadow-md hover:shadow-xl hover:bg-brick-hover hover:-translate-y-0.5 transition-all duration-200"
+                    className="border px-6 rounded-3xl flex-1 min-w-40 h-12 flex items-center justify-center font-medium bg-brick text-cream shadow-md hover:shadow-xl hover:bg-brick-hover hover:-translate-y-0.5 transition-all duration-200"
                     onClick={handleAddToCart}
                   >
                     {adding ? "Adding..." : added ? "Added ✓" : "Add to Cart"}

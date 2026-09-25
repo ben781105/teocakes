@@ -11,7 +11,7 @@ function Hero() {
           </p>
 
           <h1 className=" font-semibold  leading-tight">
-            Fresh, handmade cakes for every celebration
+            Delicious cakes for every celebration
           </h1>
 
           <p className=" max-w-md">

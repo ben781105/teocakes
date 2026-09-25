@@ -1,11 +1,11 @@
-import cakeImage from "../assets/stockcake.jpg";
+import cakeImage from "../assets/untitled.png";
 import Section from "./layout/section";
 import { BadgeCheck } from "lucide-react";
 function Hero() {
   return (
     <Section id="hero" className="bg-cream">
-      <div className="grid md:grid-cols-2 gap-10 md:gap-25 ">
-        <div className="flex flex-col gap-5">
+      <div className="grid md:grid-cols-2 gap-10 md:gap-24 items-center ">
+        <div className="flex flex-col gap-5 pb-4">
           <p className="font-script text-brick text-2xl  lg:text-3xl font-medium  tracking-wide">
             Baked fresh, just for you
           </p>
@@ -37,10 +37,10 @@ function Hero() {
         </div>
 
         {/* Right: image */}
-        <div className="relative w-full max-w-lg mx-auto animate-float">
+        <div className="relative w-full max-w-lg mx-auto py-4 animate-float ">
           {/* Outer thick ring */}
           <div
-            className="relative aspect-square bg-orange-400 p-6 animate-wriggle-outer"
+            className="relative aspect-square bg-brick p-4 animate-wriggle-outer"
             style={{ borderRadius: "40% 55% 26% 59% / 57% 41% 53% 38%" }}
           >
             {/* White gap ring */}
@@ -57,12 +57,12 @@ function Hero() {
 
           {/* Bottom-right badge */}
           <div className="  absolute bottom-0 -right-4 bg-white rounded-2xl shadow-lg pl-2 pr-7  py-3 flex items-center gap-3">
-            <div className="bg-red-600 flex items-center justify-center rounded-full p-2 text-white">
+            <div className="bg-brick flex items-center justify-center rounded-full p-2 text-white">
               <BadgeCheck className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-gray-900">100% Fresh</p>
-              <p className="text-xs text-gray-500">Best Quality</p>
+              <p className="text-sm font-semibold ">100% Fresh</p>
+              <p className="text-xs ">Best Quality</p>
             </div>
           </div>
         </div>

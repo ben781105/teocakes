@@ -27,9 +27,9 @@ function CartProvider({ children }) {
     fetchCart();
   }, []);
 
-  const addItem = useCallback(async (productId, quantity = 1) => {
+  const addItem = useCallback(async (productId, quantity = 1, options = {}) => {
     try {
-      const updatedCart = await addToCart(productId, quantity);
+      const updatedCart = await addToCart(productId, quantity, options);
       setCart(updatedCart);
       return updatedCart;
     } catch (error) {

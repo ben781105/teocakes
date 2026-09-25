@@ -48,6 +48,7 @@ function Hero() {
               {/* The actual photo, clipped to a circle */}
               <img
                 src={cakeImage}
+                fetchPriority="high"
                 alt="Chocolate layer cake"
                 className="w-full h-full object-cover rounded-full"
               />

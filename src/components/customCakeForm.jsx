@@ -65,8 +65,6 @@ function CustomCakeForm() {
   };
 
   const handleExactBudgetChange = (e) => {
-    // Strip everything but digits so people can't type letters, symbols,
-    // negative signs, decimals, etc. Cap at 9 digits (~999,999,999 Ugx).
     const digitsOnly = e.target.value.replace(/\D/g, "").slice(0, 9);
     setExactBudget(digitsOnly);
     setForm({
@@ -148,7 +146,7 @@ function CustomCakeForm() {
 
   return (
     <Section className=" bg-cream px-0">
-      <div className="max-w-3xl mx-auto bg-white py-6 px-4 rounded-lg border border-cream-dark ">
+      <div className="max-w-4xl mx-auto bg-white py-6 px-4 rounded-lg border border-cream-dark shadow-xl ">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-4  mx-auto pb-4 "
@@ -158,7 +156,7 @@ function CustomCakeForm() {
             Custom and Ready Made
           </p>
           <h2 className="font-semibold text-center">Order Your Perfect Bake</h2>
-          <p className="text-center">
+          <p className="text-center md:max-w-xl mx-auto">
             Got a cake idea that's not on our menu? Describe it below and we'll
             get back to you on WhatsApp with pricing and details.
           </p>

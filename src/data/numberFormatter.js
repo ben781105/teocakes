@@ -3,15 +3,32 @@ export const formatPrice = (amount) => {
 };
 
 export const buildOrderMessage = (order) => {
-  const header = `🎂 *New Order*\n\n`;
+  const header = `🎂 *New Order*\n`;
 
   const items = order.items
     .map((item) => {
-      return `• ${item.product_name} x${item.quantity} — Ugx ${formatPrice(item.subtotal)}`;
+      const lines = [];
+      lines.push(`*${item.product_name}*`);
+
+      const details = [`Qty: ${item.quantity}`];
+      if (item.flavour_name) details.push(`Flavour: ${item.flavour_name}`);
+      lines.push(details.join("  •  "));
+
+      if (item.custom_message) {
+        lines.push(`Message on cake: "${item.custom_message}"`);
+      }
+
+      lines.push(`Ugx ${formatPrice(item.subtotal)}`);
+      return lines.join("\n");
     })
-    .join("\n");
+    .join("\n\n");
 
-  const footer = `\n\n*Total: Ugx ${formatPrice(order.total)}*\n\nOrder ID: ${order.order_id}`;
+  const shortId = order.order_id.slice(0, 8).toUpperCase();
 
-  return header + items + footer;
+  const footer =
+    `\n\n━━━━━━━━━━━━━━━\n` +
+    `*Total: Ugx ${formatPrice(order.total)}*\n` +
+    `Order ref: ${shortId}`;
+
+  return `${header}\n${items}${footer}`;
 };

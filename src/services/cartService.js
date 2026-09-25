@@ -17,11 +17,20 @@ export const getCart = async () => {
   return response.data;
 };
 
-export const addToCart = async (productId, quantity = 1) => {
+export const addToCart = async (productId, quantity = 1, options = {}) => {
   const cartId = getCartId();
+  const body = {
+    product_id: productId,
+    quantity,
+    custom_message: options.message || "",
+    flavour_id: options.flavourId || null,
+  };
+  console.log("CARTSERVICE SENDING:", body);
   const response = await api.post(`/cart/${cartId}/add/`, {
     product_id: productId,
     quantity,
+    custom_message: options.message || "",
+    flavour_id: options.flavourId || null,
   });
   return response.data;
 };

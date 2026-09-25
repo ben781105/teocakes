@@ -2,12 +2,15 @@ function CakeCardSkeleton() {
   return (
     <div
       aria-hidden="true"
-      className="flex items-center gap-4 bg-white rounded-xl px-3 py-3 animate-pulse"
+      className="flex flex-col overflow-hidden rounded-2xl border-cream bg-white shadow-md animate-pulse"
     >
-      <div className="w-16 h-16 rounded-full bg-cream-dark shrink-0" />
-      <div className="flex-1 flex flex-col gap-2">
-        <div className="h-4 w-2/3 rounded bg-cream-dark" />
-        <div className="h-4 w-1/3 rounded bg-cream-dark" />
+      <div className="relative aspect-square sm:aspect-video md:aspect-square overflow-hidden bg-cream-dark">
+        <div className="absolute bottom-3 right-3 translate-y-1/2 w-10 h-10 rounded-full bg-cream border-3 border-white" />
+      </div>
+
+      <div className="p-3 md:p-4 flex flex-1 flex-col justify-center gap-2">
+        <div className="h-4 w-3/4 rounded bg-cream-dark" />
+        <div className="h-4 w-1/2 rounded bg-cream-dark" />
       </div>
     </div>
   );

@@ -21,14 +21,14 @@ function Cart({ isOpen, onClose }) {
     setSubmitting(true);
     setError(null);
     try {
-      const order = await confirmPhone(phone);
+      const orderDetails = await confirmPhone(phone);
 
-      const message = buildOrderMessage(order);
-      const whatsappUrl = `https://wa.me/256746326666?text=${message}`;
+      const message = buildOrderMessage(orderDetails);
+      const whatsappUrl = `https://wa.me/256746326666?text=${encodeURIComponent(message)}`;
 
       window.open(whatsappUrl, "_blank");
       setCheckoutOpen(false);
-      setOrderSent(true); // <-- was missing
+      setOrderSent(true);
     } catch (err) {
       console.error(err);
       setError("Something went wrong. Please try again.");
@@ -120,6 +120,12 @@ function Cart({ isOpen, onClose }) {
                         </span>
                         <div className="flex flex-col gap-1">
                           <span>{item.product.name}</span>
+                          {item.flavour_name && (
+                            <span className="text-xs text-brown">
+                              {item.flavour_name}
+                            </span>
+                          )}
+
                           <span className="text-xs text-gray-500">
                             {formatPrice(item.product.price)} each
                           </span>
@@ -177,7 +183,7 @@ function Cart({ isOpen, onClose }) {
                       disabled={!cart || cart.items.length === 0}
                       className="bg-brick hover:bg-brick-hover hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-xl text-cream hover:text-white py-3 rounded-3xl disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-md disabled:hover:bg-brick  disabled:cursor-not-allowed"
                     >
-                      Checkout
+                      Place Order
                     </button>
                   ) : (
                     <div className="flex flex-col gap-2">

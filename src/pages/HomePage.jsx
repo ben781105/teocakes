@@ -5,11 +5,13 @@ import HowItWorks from "../components/howitworks";
 import Testimonials from "../components/testimonials";
 import CallToAction from "../components/calltoaction";
 import Marquee from "../components/marquee";
+import CategorySection from "../components/categorysection";
 function Home() {
   return (
     <main>
       <Hero />
       <Marquee />
+      <CategorySection />
       <About />
       <Favourites />
       <HowItWorks />

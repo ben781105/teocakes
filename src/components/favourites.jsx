@@ -1,18 +1,27 @@
-import { useState, useEffect, useCallback, memo } from "react";
+import { useState, useEffect, memo } from "react";
 import { getFavourites } from "../services/favouriteService";
 import Section from "./layout/section.jsx";
 import { Plus } from "lucide-react";
-import CakeDetail from "./cakedetail.jsx";
 import { formatPrice } from "../data/numberFormatter.js";
 import CardSkeleton from "./skeletons/favouriteCardSkeleton.jsx";
+import { useNavigate } from "react-router-dom";
 
 const FavouriteCard = memo(function FavouriteCard({ cake, onSelect }) {
-  const { id, image, name, price, description } = cake;
+  const {
+    id,
+    image,
+    name,
+    price,
+    description,
+    slug,
+    category_slug,
+    thumbnail,
+  } = cake;
   return (
     <div className="group flex flex-col overflow-hidden rounded-2xl border-cream  bg-white shadow-md hover:shadow-lg transition-transform duration-300 lg:hover:scale-103">
       <div className="relative aspect-square sm:aspect-video md:aspect-square overflow-hidden">
         <img
-          src={image}
+          src={thumbnail || image}
           alt={name}
           loading="lazy"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -20,7 +29,17 @@ const FavouriteCard = memo(function FavouriteCard({ cake, onSelect }) {
         <button
           type="button"
           aria-label={`Add ${name} to selection`}
-          onClick={() => onSelect({ id, image, name, price, description })}
+          onClick={() =>
+            onSelect({
+              id,
+              image,
+              name,
+              price,
+              description,
+              slug,
+              category_slug,
+            })
+          }
           className="absolute bottom-3 cursor-pointer right-3 translate-y-1/2 z-10 transition-transform duration-300 ease-out group-hover:rotate-90 group-hover:scale-110 font-medium bg-brick text-cream hover:text-white hover:bg-brick-hover border-3 border-white rounded-full p-2"
         >
           <Plus className="w-6 h-6 text-white" />
@@ -53,10 +72,8 @@ const FavouriteGrid = memo(function FavouriteGrid({
 
 function Favourites() {
   const [cakes, setCakes] = useState([]);
-  const [selectedCake, setSelectedCake] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  const handleCloseDetail = useCallback(() => setSelectedCake(null), []);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchFavourites = async () => {
@@ -73,6 +90,10 @@ function Favourites() {
     fetchFavourites();
   }, []);
 
+  const handleSelectedCake = (cake) => {
+    navigate(`/${cake.category_slug}/${cake.slug}`);
+  };
+
   return (
     <Section id="favourites" className="bg-cream">
       <div className="flex flex-col">
@@ -82,14 +103,10 @@ function Favourites() {
         <h2 className="text-center">Our Delicious Cakes</h2>
         <FavouriteGrid
           cakes={cakes}
-          onSelect={setSelectedCake}
+          onSelect={handleSelectedCake}
           isLoading={isLoading}
         />
       </div>
-
-      {selectedCake && (
-        <CakeDetail cake={selectedCake} onClose={handleCloseDetail} />
-      )}
     </Section>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { useParams, Link, Navigate, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Minus, Plus, Clock, Users } from "lucide-react";
 import { getCakes } from "../services/cakeService";
@@ -7,6 +7,7 @@ import { useCart } from "../context/useCart";
 import { formatPrice } from "../data/numberFormatter";
 import Section from "../components/layout/section";
 import CakeGridCard from "../components/cakegridcard";
+import NotFound from "./notfound";
 
 function CakeDetailPage() {
   const { categorySlug, cakeSlug } = useParams();
@@ -70,7 +71,7 @@ function CakeDetailPage() {
   }, [cake, quantity, message, selectedFlavour, addItem]);
 
   if (notFound) {
-    return <Navigate to={`/${categorySlug}`} replace />;
+    return <NotFound />;
   }
 
   return (
@@ -107,7 +108,7 @@ function CakeDetailPage() {
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Image gallery */}
-              <div className="flex flex-col md:flex-row-reverse overflow-auto gap-3">
+              <div className="flex flex-col md:flex-row-reverse gap-3">
                 <div className="aspect-square rounded-2xl overflow-hidden flex-1">
                   <img
                     src={allImages[activeImage]?.image}

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import {
   FaFacebook,
   FaInstagram,
+  FaTiktok,
   FaXTwitter,
   FaYoutube,
 } from "react-icons/fa6";
@@ -35,6 +36,16 @@ function Footer() {
               ingredients for birthdays, weddings, and every special occasion.
             </p>
             <div className="flex gap-3 mt-5">
+              <a
+                href="https://www.tiktok.com"
+                aria-label="Follow us on Tiktok"
+                className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-brick duration-300 transition hover:-translate-y-0.5"
+              >
+                <FaTiktok
+                  className="w-5 h-5 text-white/80"
+                  aria-hidden="true"
+                />
+              </a>
               <a
                 href="https://www.facebook.com"
                 aria-label="Follow us on Facebook"

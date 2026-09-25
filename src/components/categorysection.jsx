@@ -35,9 +35,9 @@ function CategorySection() {
               <Link
                 key={category.slug}
                 to={`/${category.slug}`}
-                className="group  bg-white flex flex-col items-center justify-center aspect-square md:aspect-auto border border-cream-dark  gap-2 md:py-12 rounded-2xl hover:bg-announcement hover:border-announcement hover:shadow-[0_12px_30px_rgba(75,45,35,0.12)] hover:-translate-y-2 transition-all duration-300"
+                className="group  bg-white flex flex-col items-center justify-center aspect-square md:aspect-auto border border-cream-dark  gap-2 py-10 md:py-12 rounded-2xl hover:bg-announcement hover:border-announcement hover:shadow-[0_12px_30px_rgba(75,45,35,0.12)] hover:-translate-y-2 transition-all duration-300"
               >
-                <div className="w-22 h-22 md:w-18 md:h-18 rounded-full">
+                <div className="w-20 h-20 md:w-18 md:h-18 rounded-full">
                   <img
                     src={category.thumbnail || category.image}
                     alt={category.name}

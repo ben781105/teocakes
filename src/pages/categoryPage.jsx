@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { getCakes } from "../services/cakeService";
 import { getCategories } from "../services/categoryService";
@@ -8,6 +8,7 @@ import CakeCardSkeleton from "../components/skeletons/cakeCardSkeleton";
 import CakeGridCard from "../components/cakegridcard";
 import PriceFilterPills from "../components/pricefilterpills";
 import { useNavigate } from "react-router-dom";
+import NotFound from "./notfound";
 
 function CategoryPage() {
   const { categorySlug } = useParams();
@@ -61,7 +62,7 @@ function CategoryPage() {
   }, [categoryCakes, priceRange]);
 
   if (notFound) {
-    return <Navigate to="/menu" replace />;
+    return <NotFound />;
   }
 
   const handleSelectedCake = (cake) => {

@@ -1,5 +1,5 @@
 import { Phone, Mail, MapPin } from "lucide-react";
-import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
+import { FaFacebook, FaInstagram, FaTiktok, FaXTwitter } from "react-icons/fa6";
 import Container from "./layout/container";
 
 function TopBar() {
@@ -28,11 +28,13 @@ function TopBar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-gold" />
-            Taking orders: 9AM - 6PM
-          </span>
           <div className="flex items-center gap-2">
+            <a
+              href="https://www.tiktok.com"
+              className="w-8 h-8 rounded-full flex items-center justify-center bg-white/10 hover:bg-gold duration-300 transition hover:-translate-y-0.5"
+            >
+              <FaTiktok className="w-4 h-4 text-white" />
+            </a>
             <a
               href="https://www.facebook.com"
               className="w-8 h-8 rounded-full flex items-center justify-center bg-white/10 hover:bg-gold duration-300 transition hover:-translate-y-0.5"

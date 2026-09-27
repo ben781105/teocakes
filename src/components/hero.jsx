@@ -11,7 +11,8 @@ function Hero() {
           </p>
 
           <h1 className=" font-semibold  leading-tight">
-            Delicious cakes for every celebration
+            Delicious Cakes For Every{" "}
+            <span className="font-heading text-brick">Celebration</span>
           </h1>
 
           <p className=" max-w-md">

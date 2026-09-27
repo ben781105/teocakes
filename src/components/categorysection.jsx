@@ -20,8 +20,8 @@ function CategorySection() {
           What's Baking
         </p>
         <h2 className="text-center mt-2">
-          Browse <span className="font-heading text-brick">Cake</span>{" "}
-          Categories
+          Browse Fresh Cake{" "}
+          <span className="font-heading text-brick">Categories</span>
         </h2>
         {isLoading ? (
           <div className="grid grid-cols-2 md:grid-cols-6 gap-5 mt-10">

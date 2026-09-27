@@ -11,7 +11,7 @@ function CallToAction() {
         <p className=" font-script text-brick text-2xl  lg:text-3xl font-medium tracking-wide mb-3">
           Ordering made simple
         </p>
-        <h2 className="text-cream">Order your cake directly on WhatsApp</h2>
+        <h2 className="text-cream">Order your Cake Directly On WhatsApp</h2>
         <p className="text-cream mt-3 max-w-md">
           No sign-ups, no waiting. Message us your order and we'll confirm
           availability, pricing, and pickup details right away.

@@ -30,7 +30,7 @@ function HowItWorks() {
         It's this simple
       </p>
       <h2 className="font-medium text-espresso text-center ">
-        From order to pickup
+        From Order To <span className="font-heading text-brick">Pickup</span>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8">
         {steps.map(({ icon: Icon, title, description }, index) => (

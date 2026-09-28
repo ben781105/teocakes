@@ -75,16 +75,20 @@ function Testimonials() {
           </div>
         ))}
       </div>
-      <div className="md:hidden flex justify-center gap-2 mt-4">
+      <div className="md:hidden flex justify-center gap-1 mt-4">
         {testimonials.map((t, i) => (
           <button
             key={t.id}
             onClick={() => goTo(i)}
             aria-label={`Go to testimonial ${i + 1}`}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              active === i ? "w-2 bg-brick" : "w-2 bg-cream-dark"
-            }`}
-          />
+            className="p-3 flex items-center justify-center"
+          >
+            <span
+              className={`block h-2 rounded-full transition-all duration-300 ${
+                active === i ? "w-6 bg-brick" : "w-2 bg-cream-dark"
+              }`}
+            />
+          </button>
         ))}
       </div>
 

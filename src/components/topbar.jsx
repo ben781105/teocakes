@@ -31,27 +31,31 @@ function TopBar() {
           <div className="flex items-center gap-2">
             <a
               href="https://www.tiktok.com"
+              aria-label="Follow us on TikTok"
               className="w-8 h-8 rounded-full flex items-center justify-center bg-white/10 hover:bg-gold duration-300 transition hover:-translate-y-0.5"
             >
-              <FaTiktok className="w-4 h-4 text-white" />
+              <FaTiktok className="w-4 h-4 text-white" aria-hidden="true" />
             </a>
             <a
               href="https://www.facebook.com"
+              aria-label="Follow us on Facebook"
               className="w-8 h-8 rounded-full flex items-center justify-center bg-white/10 hover:bg-gold duration-300 transition hover:-translate-y-0.5"
             >
-              <FaFacebook className="w-4 h-4 text-white" />
+              <FaFacebook className="w-4 h-4 text-white" aria-hidden="true" />
             </a>
             <a
               href="https://www.instagram.com"
+              aria-label="Follow us on Instagram"
               className="w-8 h-8 rounded-full flex items-center justify-center bg-white/10 hover:bg-gold duration-300 transition hover:-translate-y-0.5"
             >
-              <FaInstagram className="w-4 h-4 text-white" />
+              <FaInstagram className="w-4 h-4 text-white" aria-hidden="true" />
             </a>
             <a
               href="https://www.X.com"
+              aria-label="Follow us on X"
               className="w-8 h-8 rounded-full flex items-center justify-center bg-white/10 hover:bg-gold duration-300 transition hover:-translate-y-0.5"
             >
-              <FaXTwitter className="w-4 h-4 text-white" />
+              <FaXTwitter className="w-4 h-4 text-white" aria-hidden="true" />
             </a>
           </div>
         </div>

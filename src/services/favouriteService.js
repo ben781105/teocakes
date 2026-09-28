@@ -3,12 +3,12 @@ import api from "../api/axios";
 let cakesCache = null;
 let cachePromise = null;
 
-export const getCakes = async () => {
+export const getFavourites = async () => {
   if (cakesCache) return cakesCache;
   if (cachePromise) return cachePromise;
 
   cachePromise = api
-    .get("/products/")
+    .get("/favourites/")
     .then((res) => {
       cakesCache = res.data;
       cachePromise = null;

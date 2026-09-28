@@ -1,5 +1,5 @@
 import { useState, useEffect, memo } from "react";
-import { getFavourites } from "../services/favouriteService";
+import { getFavourites } from "../services/favouriteService.js";
 import Section from "./layout/section.jsx";
 import { Plus } from "lucide-react";
 import { formatPrice } from "../data/numberFormatter.js";

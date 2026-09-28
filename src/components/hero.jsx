@@ -1,4 +1,3 @@
-import cakeImage from "../assets/untitled.png";
 import Section from "./layout/section";
 import { BadgeCheck } from "lucide-react";
 function Hero() {
@@ -48,7 +47,7 @@ function Hero() {
             <div className="w-full h-full rounded-full bg-white p-2">
               {/* The actual photo, clipped to a circle */}
               <img
-                src={cakeImage}
+                src="/hero.webp"
                 fetchPriority="high"
                 alt="Chocolate layer cake"
                 className="w-full h-full object-cover rounded-full"

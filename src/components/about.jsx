@@ -1,4 +1,4 @@
-import aboutImage from "../assets/about.jpg";
+import aboutImage from "../assets/about.webp";
 import Section from "./layout/section";
 import { Link } from "react-router-dom";
 function About() {

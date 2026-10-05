@@ -4,12 +4,14 @@ import Layout from "./components/global/layout";
 import CartProvider from "./context/cartProvider";
 import CustomCakeForm from "./components/customCakeForm";
 import Menu from "./components/menu";
+import AboutPage from "./pages/AboutPage";
 import Gallery from "./components/gallery";
 import CategoryPage from "./pages/categoryPage";
 import CakeDetailPage from "./pages/cakedetailpage";
 import { useParams } from "react-router-dom";
 import NotFound from "./pages/notfound";
 import ScrollToTopOnNavigate from "./components/global/scrollnavigate";
+import ContactPage from "./pages/ContactPage";
 
 function KeyedCakeDetail() {
   const { cakeSlug } = useParams();
@@ -24,9 +26,11 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/custom-order" element={<CustomCakeForm />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/:categorySlug" element={<CategoryPage />} />
             <Route
               path="/:categorySlug/:cakeSlug"

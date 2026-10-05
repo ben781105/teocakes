@@ -10,10 +10,11 @@ import logo from "../assets/logo.svg";
 
 const navLinks = [
   { type: "route", to: "/", label: "Home", end: true },
-  { type: "scroll", id: "about", label: "About" },
+  { type: "route", to: "/about", label: "About" },
   { type: "route", to: "/custom-order", label: "Custom Order" },
   { type: "route", to: "/menu", label: "Menu" },
   { type: "route", to: "/gallery", label: "Gallery" },
+  { type: "route", to: "/contact", label: "Contact" },
 ];
 
 function Navbar({ onCartClick }) {

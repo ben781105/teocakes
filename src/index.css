@@ -109,7 +109,7 @@ button:disabled {
   }
 
   h3 {
-    font-size: clamp(1rem, 0.6vw + 0.8rem, 1.125rem);
+    font-size: clamp(1.125rem, 0.7vw + 0.9rem, 1.25rem);
     line-height: 1.35;
     font-family: "Fraunces", serif;
     color: var(--color-espresso);

@@ -123,12 +123,12 @@ function Footer() {
                 </Link>
               </li>
               <li className="hover:translate-x-1 duration-300 transition-all">
-                <a
-                  href="#about"
+                <Link
+                  to="/about"
                   className="text-white/80 hover:text-gold transition-all duration-300"
                 >
                   About
-                </a>
+                </Link>
               </li>
               <li className="hover:translate-x-1 duration-300 transition-all">
                 <Link
@@ -136,6 +136,14 @@ function Footer() {
                   className="text-white/80 hover:text-gold transition-all duration-300"
                 >
                   Gallery
+                </Link>
+              </li>
+              <li className="hover:translate-x-1 duration-300 transition-all">
+                <Link
+                  to="/contact"
+                  className="text-white/80 hover:text-gold transition-all duration-300"
+                >
+                  Contact
                 </Link>
               </li>
             </ul>

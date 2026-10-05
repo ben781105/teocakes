@@ -325,7 +325,7 @@ function CustomCakeForm() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-[75%]  sm:w-[50%]  self-center bg-brick hover:bg-brick-hover hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-xl text-cream hover:text-white py-3 rounded-3xl disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-md disabled:hover:bg-brick  disabled:cursor-not-allowed"
+            className="w-[85%]  sm:w-[50%]  self-center bg-brick hover:bg-brick-hover hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-xl text-cream hover:text-white py-3 rounded-3xl disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-md disabled:hover:bg-brick  disabled:cursor-not-allowed"
           >
             {submitting ? "Sending..." : "Send Request via WhatsApp"}
           </button>

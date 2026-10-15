@@ -1,43 +1,30 @@
-import aboutImage from "../assets/about.webp";
-import Section from "./layout/section";
 import { Link } from "react-router-dom";
+import Section from "./layout/section";
+
 function About() {
   return (
-    <Section id="about " className="bg-cream-dark">
-      <div className="relative flex flex-col gap-10 md:gap-15 md:flex-row ">
-        <div className="w-full aspect-square">
-          <img
-            src={aboutImage}
-            loading="lazy"
-            alt="About TeoCakes"
-            className="object-cover w-full h-full rounded-3xl border-7 border-white shadow-lg"
-          />
-        </div>
-
-        <div className="flex flex-col gap-3">
-          <p className="font-script text-brick text-2xl  lg:text-3xl ">
-            Welcome to TeoCakes
-          </p>
-          <h2>
-            Cakes Baked With Passion, Made For Your{" "}
-            <span className="font-heading text-brick">Celebration</span>
-          </h2>
-          <p>
-            At TeoCakes, every cake starts from scratch with real butter and
-            real ingredients. We blend traditional baking techniques with fresh,
-            creative flavors to craft cakes that feel personal and made just for
-            you. Birthdays, weddings, or a reason you just made up, we bake it
-            like it matters.
-          </p>
-          <Link
-            to="/menu"
-            className="w-[50%] sm:w-[30%] border text-center py-3  rounded-lg mt-5 font-medium bg-brick text-cream shadow-md hover:shadow-xl hover:bg-brick-hover hover:-translate-y-0.5 transition-all duration-300"
-          >
-            Explore our menu
-          </Link>
-        </div>
+    <Section id="about" className="bg-cream-dark">
+      <div className="max-w-xl mx-auto text-center">
+        <p className="font-script text-brick text-2xl lg:text-3xl mb-1">
+          Welcome to TeoCakes
+        </p>
+        <h2 className="mb-3">
+          A Home Bakery In <span className="text-brick">Entebbe</span>
+        </h2>
+        <p className="mb-6">
+          Every cake is baked from scratch, to order, by one pair of hands. Real
+          butter, real ingredients, and a design built around whatever you're
+          celebrating.
+        </p>
+        <Link
+          to="/about"
+          className="inline-block font-medium text-brick border-b border-brick pb-0.5 hover:text-brick-hover hover:border-brick-hover transition-colors duration-300"
+        >
+          Read our story &rarr;
+        </Link>
       </div>
     </Section>
   );
 }
+
 export default About;

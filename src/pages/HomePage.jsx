@@ -6,6 +6,7 @@ import Testimonials from "../components/testimonials";
 import CallToAction from "../components/calltoaction";
 import Marquee from "../components/marquee";
 import CategorySection from "../components/categorysection";
+import TikTokSection from "../components/tiktoksection";
 function Home() {
   return (
     <main>
@@ -13,6 +14,7 @@ function Home() {
       <Marquee />
       <CategorySection />
       <About />
+      <TikTokSection />
       <Favourites />
       <HowItWorks />
       <Testimonials />

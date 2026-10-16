@@ -1,7 +1,7 @@
 import { useWhatsappOrderLink } from "../../data/whatsappOrderLink";
 import { FaWhatsapp } from "react-icons/fa6";
 function WhatsappFloatButton() {
-  const whatsappOrderLink = useWhatsappOrderLink("256746326666");
+  const whatsappOrderLink = useWhatsappOrderLink("256708693920");
 
   return (
     <a

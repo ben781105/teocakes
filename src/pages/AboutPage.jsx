@@ -95,8 +95,8 @@ function AboutPage() {
               <h2>A home bakery built on one thing: good cake</h2>
               <p>
                 TeoCakes started in a home kitchen in Entebbe and has stayed
-                there. [PLACEHOLDER: a few lines on how Teo started baking, what
-                drew her to it, and roughly when.]
+                there. [PLACEHOLDER: a few lines on how you started baking, what
+                drew you to it, and roughly when.]
               </p>
               <p>
                 We bake birthday cakes, wedding cakes and custom designs for
